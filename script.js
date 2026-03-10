@@ -73,31 +73,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const allDetails = document.querySelectorAll('.collection-section');
 
     allDetails.forEach((details) => {
-        const galerie = details.querySelector('.galerie');
+    const galerie = details.querySelector('.galerie');
 
-        details.addEventListener('toggle', () => {
-            if (details.open) {
-                details.classList.add('fullscreen-mode');
-                allDetails.forEach(other => {
-                    if (other !== details) other.classList.add('hidden-mode');
-                });
+    details.addEventListener('toggle', () => {
+        if (details.open) {
+            // 1. MODE FOCUS IMMÉDIAT
+            details.classList.add('fullscreen-mode');
+            allDetails.forEach(other => {
+                if (other !== details) other.classList.add('hidden-mode');
+            });
 
-                const targetY = details.offsetTop - 50; 
-                window.scrollTo({ top: targetY, behavior: 'auto' });
+            // 2. CALCUL DU CENTRAGE
+            // On force un scroll instantané à une position précise 
+            // pour que la galerie soit au centre de l'écran.
+            // 150px laisse de la place pour voir le titre de la collection.
+            const targetY = details.offsetTop - 50; 
+            
+            window.scrollTo({
+                top: targetY,
+                behavior: 'auto' // 'auto' = instantané, donc ZÉRO saccade
+            });
 
-                galerie.style.opacity = '0';
-                setTimeout(() => {
-                    galerie.style.transition = 'all 0.6s ease-out';
-                    galerie.style.opacity = '1';
-                    updateArrows(galerie);
-                }, 50);
-            } else {
-                details.classList.remove('fullscreen-mode');
-                allDetails.forEach(other => other.classList.remove('hidden-mode'));
-                details.scrollIntoView({ behavior: 'auto', block: 'center' });
-            }
-        });
+            // 3. APPARITION SOYEUSE
+            // On ajoute une petite animation fluide uniquement sur le contenu
+            galerie.style.opacity = '0';
+            galerie.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                galerie.style.transition = 'all 0.6s ease-out';
+                galerie.style.opacity = '1';
+                galerie.style.transform = 'translateY(0)';
+                updateArrows(galerie);
+            }, 50);
+
+        } else {
+            // RETOUR À LA GRILLE
+            details.classList.remove('fullscreen-mode');
+            allDetails.forEach(other => other.classList.remove('hidden-mode'));
+            
+            // On replace l'utilisateur sur sa vignette
+            details.scrollIntoView({ behavior: 'auto', block: 'center' });
+        }
     });
+});
 
     document.querySelectorAll('.galerie').forEach(galerie => {
         galerie.addEventListener('scroll', () => updateArrows(galerie));
