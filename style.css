@@ -1,0 +1,779 @@
+body {
+    background-color: #f4f4f4;
+    font-family: 'Georgia', serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #111;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* NAVIGATION */
+.navigation {
+    text-align: center;
+    margin-bottom: 30px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.navigation a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.navigation a:hover {
+    color: #000;
+}
+
+/* --- CONFIGURATION ACCUEIL IMMERSIF --- */
+
+/* LE HERO : L'IMAGE DE FOND TOTALE */
+/* --- FORCE LE PLEIN ÉCRAN SUR L'ACCUEIL --- */
+
+.home-page .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Force la hauteur à 100% de l'écran visible */
+    margin: 0;
+    padding: 0;
+    padding-top: 30vh; /* Remonte ton texte à 30% du haut */
+    box-sizing: border-box;
+
+    /* L'IMAGE DE FOND */
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), 
+                      url('images/utile/nue_femme_assise.jpg');
+    
+    background-size: cover !important; /* REMPLIT TOUT sans déformer */
+    background-position: center 20% !important; /* Aligne sur le visage/haut du corps */
+    background-repeat: no-repeat;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Permet au padding-top de gérer la hauteur du texte */
+}
+
+/* On s'assure que le body ne bloque rien */
+.home-page {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden; /* Évite un scroll horizontal parasite */
+}
+
+/* LE SOUS-TITRE (Artiste plasticienne) */
+.home-page .subtitle {
+    font-size: 1rem; /* Plus petit */
+    letter-spacing: 3px;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-style: italic; /* Optionnel : pour le côté artistique */
+    margin-top: 15px;
+    opacity: 0.9; /* Un peu plus discret que le nom */
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.8), 
+        0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* --- RETOUR AUX STYLES D'ORIGINE POUR LE TEXTE ET BOUTON --- */
+
+.hero-content p {
+    font-family: 'Georgia', serif;
+    font-size: 3rem; /* On l'agrandit un peu pour l'impact */
+    font-style: italic;
+    color: black;
+    margin-bottom: 30px;
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.8), 
+        0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.btn-explorer {
+    display: inline-block;
+    background-color: transparent;
+    color: #111;
+    padding: 15px 35px; /* Un peu plus de souffle */
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border: 1px solid black; /* Bordure fine blanche */
+    border-radius: 10px; /* Ton style arrondi d'origine */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.8), 
+        0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.btn-explorer:hover {
+    transform: translateY(-3px);
+    background-color: rgb(211, 197, 197);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.subtitle{
+    display:block;
+    font-style: italic;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
+
+/* On cache le footer sur l'accueil pour garder l'aspect épuré "Affiche" */
+.home-page footer {
+    display: none;
+}
+
+/* --- SECTION COLLECTIONS : TITRES & ACCORDÉONS --- */
+
+.collection-section summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    cursor: pointer;
+    list-style: none; /* Cache le triangle par défaut */
+    border-bottom: 1px solid #eee;
+}
+
+.collection-section summary::-webkit-details-marker {
+    display: none; /* Cache le triangle sur Chrome/Safari */
+}
+
+.titre-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.label-collection {
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.nom-collection {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    color: #333;
+}
+
+/* LE LOGO > QUI POINTE VERS LE BAS */
+.fleche-indication {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg); /* Pointe vers le bas-droite */
+    margin-left: 10px;
+    transition: transform 0.4s ease;
+}
+
+/* Rotation du logo quand on ouvre */
+.collection-section[open] .fleche-indication {
+    transform: rotate(-135deg); /* Pointe vers le haut */
+}
+
+/* GALERIE & OEUVRES */
+/* --- GALERIE HORIZONTALE --- */
+.galerie {
+    display: flex; /* Aligne les œuvres sur une seule ligne */
+    flex-wrap: nowrap; /* EMPÊCHE le retour à la ligne */
+    overflow-x: auto; /* Active le scroll horizontal */
+    overflow-y: hidden; /* Désactive le scroll vertical inutile */
+    gap: 40px; /* Espace entre les tableaux */
+    padding: 40px 20px;
+    scroll-behavior: smooth; /* Rend le défilement fluide */
+    -webkit-overflow-scrolling: touch; /* Optimisation pour mobile */
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+/* Personnalisation de la barre de défilement (Scrollbar) pour qu'elle soit élégante */
+.galerie::-webkit-scrollbar {
+    height: 8px; /* Hauteur de la barre */
+}
+
+.galerie::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.galerie::-webkit-scrollbar-thumb {
+    background: #ccc; /* Couleur de la barre */
+    border-radius: 10px;
+}
+
+.galerie::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* On s'assure que les articles ne rétrécissent pas */
+/* --- ŒUVRES : ALIGNEMENT ET STYLE --- */
+
+.oeuvre {
+    flex: 0 0 350px; /* Largeur fixe pour le scroll horizontal */
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+    
+    /* Configuration pour l'alignement vertical */
+    display: flex;
+    flex-direction: column;
+}
+
+.oeuvre:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* IMAGE */
+.image-lien { 
+    display: block; 
+    overflow: hidden; 
+    cursor: zoom-in; 
+    margin-bottom: 15px;
+}
+
+.image-lien img { 
+    width: 100%; 
+    height: 300px; /* On peut même augmenter un peu la hauteur */
+    object-fit: contain; /* L'œuvre sera ENTIÈREMENT visible sans être coupée */
+    background-color: white; /* Un fond très légèrement gris pour simuler un cadre */
+    transition: transform 0.3s; 
+    display: block;
+}
+
+.image-lien:hover img { transform: scale(1.05); }
+
+/* TITRE */
+.oeuvre h2 {
+    
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    min-height: 2.8em; /* Réserve la place pour 2 lignes de texte */
+}
+
+/* DÉTAILS (Dimensions, Technique) */
+.details {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* --- LE BLOC BAS (Prix, Statut, Bouton) --- */
+/* On pousse tout ce qui suit vers le bas de la carte */
+.prix {
+    margin-top: auto; 
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #f9f9f9;
+}
+
+.statut { 
+    padding: 6px 10px; 
+    border-radius: 3px; 
+    display: inline-block; 
+    font-size: 0.75rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    margin-bottom: 15px; 
+    letter-spacing: 1px;
+}
+
+.disponible { background-color: #e6fffa; color: #00875a; }
+.reservee { background-color: #fff3cd; color: #856404; }
+.vendue { background-color: #fceaea; color: #c53030; }
+
+/* BOUTON RÉSERVER */
+.mon-bouton-reserve {
+    display: block;
+    border: 1px solid #111;
+    background-color: transparent;
+    color: #111;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.mon-bouton-reserve:hover:not(.disabled) {
+    background-color: #111;
+    color: white;
+}
+
+.mon-bouton-reserve.disabled {
+    border-color: #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}
+.btn-retour-menu {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.container-infos {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.comment-reserver {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.comment-reserver summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    text-align: center;
+}
+
+.comment-reserver summary::after { content: ' ▼'; font-size: 0.8rem; color: #777; }
+.comment-reserver[open] summary::after { content: ' ▲'; }
+
+.mon-bouton-newsletter {
+    display: table;
+    margin: 20px auto;
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.mon-bouton-newsletter:hover {
+    background-color: white;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    transform: translateY(-2px);
+}
+
+/* SECTION ARTISTE */
+.artiste-container { max-width: 1000px; margin: 0 auto; display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
+.artiste-image { flex: 1; min-width: 300px; }
+.artiste-image img { width: 100%; border-radius: 2px; box-shadow: 15px 15px 0px #eee; }
+.artiste-texte { flex: 1.5; min-width: 300px; }
+
+footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #eee; margin-top: auto; }
+
+/* --- COLLECTIONS STYLE MUSÉE --- */
+
+.collection-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 50px auto; /* Plus d'espace entre les collections */
+    border-bottom: 1px solid #111; /* Ligne plus affirmée pour le côté artistique */
+}
+
+.collection-section summary {
+    padding: 30px 0;
+    font-size: 2.5rem; /* Titre plus grand */
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Aligne le titre et l'image verticalement */
+    align-items: flex-start;
+    transition: all 0.4s;
+    color: #111;
+}
+
+/* --- STYLE DES TITRES DE COLLECTIONS AVEC MINIATURE --- */
+
+.collection-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-bottom: 1px solid #eee;
+}
+
+.collection-section summary {
+    padding: 30px 0;
+    font-size: 2rem;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center; /* Aligne le texte et l'image sur la même ligne */
+    justify-content: space-between; /* Texte à gauche, image à droite */
+    transition: all 0.4s;
+}
+
+/* LA MINIATURE STYLISÉE */
+.miniature-collection {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 0px;
+    margin-left: 20px;
+    position: relative;
+    /* ON AJOUTE UN FOND DISCRET */
+    background-color: whitesmoke; /* Un gris très clair pour combler le vide si l'image est horizontale */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.miniature-collection img {
+    /* ON CHANGE COVER PAR CONTAIN */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* L'image entière sera visible dans le cadre de 300x400 */
+    filter: grayscale(30%);
+    transition: transform 0.5s ease, filter 0.5s ease;
+    padding: 10px; /* Petit espace interne pour que l'image ne colle pas aux bords du cadre */
+    box-sizing: border-box;
+}
+
+.miniature-collection:hover img {
+    transform: scale(1.05); /* Zoom plus léger car on a des bords maintenant */
+    filter: grayscale(0%);
+}
+
+/* --- LE CHANGEMENT MAJEUR ICI --- */
+/* On ne fait plus .collection-section:hover, mais on cible la miniature directement */
+.miniature-collection:hover img {
+    transform: scale(1.15); /* Le zoom se passe uniquement À L'INTÉRIEUR du cadre */
+    filter: grayscale(0%);
+}
+
+/* On garde un petit effet discret sur le titre séparément si tu veux */
+.collection-section summary:hover {
+    color: #666; /* Le texte change de couleur, mais l'image ne bouge pas tant qu'on ne la touche pas */
+}
+
+/* --- LA MAGIE : FAIRE DISPARAÎTRE L'IMAGE QUAND C'EST OUVERT --- */
+.collection-section[open] .miniature-collection {
+    display: none;
+}
+
+/* AJUSTEMENT DU TITRE QUAND OUVERT */
+.collection-section[open] summary {
+    border-bottom: 2px solid #111;
+    margin-bottom: 30px;
+    color: #111;
+}
+
+/* L'animation de la galerie reste la même */
+.collection-section[open] .galerie {
+    animation: apparitionDouce 0.8s ease-out;
+}
+
+/* Le fond noir de la Lightbox */
+.lightbox {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 9999; /* Par dessus tout le reste */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9); /* Noir transparent */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* L'image agrandie */
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80vh;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 3px solid white;
+    animation: zoomIn 0.3s ease;
+}
+
+/* Le titre sous l'image */
+#caption {
+    color: white;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+}
+
+/* Le bouton fermer (X) */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.7); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.galerie-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* --- BOUTONS DE NAVIGATION (FIXE POSITION) --- */
+
+/* Style commun aux deux boutons */
+.btn-scroll-left, .btn-scroll-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #111;
+    cursor: pointer;
+    z-index: 100; /* On s'assure qu'ils sont au-dessus de tout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
+    
+    /* Caché par défaut */
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* POSITION GAUCHE : On force le bouton gauche à gauche */
+.btn-scroll-left {
+    left: 20px;
+    right: auto; /* Sécurité pour annuler un éventuel héritage */
+}
+
+/* POSITION DROITE : On force le bouton droit à droite */
+.btn-scroll-right {
+    right: 20px;
+    left: auto; /* Sécurité pour annuler un éventuel héritage */
+}
+
+/* Affichage au survol SI la classe 'active' est ajoutée par le JS */
+.galerie-wrapper:hover .btn-scroll-left.active,
+.galerie-wrapper:hover .btn-scroll-right.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hover sur les ronds */
+.btn-scroll-left:hover, .btn-scroll-right:hover {
+    background: #111;
+}
+
+.btn-scroll-left:hover .fleche-gauche,
+.btn-scroll-right:hover .fleche-droite {
+    border-color: #fff;
+}
+
+/* --- DESSIN DES FLÈCHES --- */
+
+.fleche-gauche {
+    width: 12px;
+    height: 12px;
+    border-left: 3px solid #111;
+    border-bottom: 3px solid #111;
+    transform: rotate(45deg);
+    margin-left: 5px;
+}
+
+.fleche-droite {
+    width: 12px;
+    height: 12px;
+    border-right: 3px solid #111;
+    border-bottom: 3px solid #111;
+    transform: rotate(-45deg);
+    margin-right: 5px;
+}
+
+/* --- ADAPTATION POUR GRANDS ÉCRANS (PC/TABLETTES) --- */
+@media (min-width: 1024px) {
+    .galerie-conteneur {
+        display: grid;
+        /* On garde 2 colonnes, mais on augmente l'espace (gap) */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 60px; 
+        max-width: 1600px; /* On élargit le conteneur global */
+        margin: 0 auto;
+    }
+
+    /* ON AGRANDIT LA MINIATURE ICI */
+    .miniature-collection {
+        width: 450px;  /* Augmenté de 300px à 450px */
+        height: 450px; /* Augmenté de 300px à 450px */
+        margin-left: 30px;
+    }
+
+    /* On ajuste le texte pour qu'il ne paraisse pas minuscule à côté */
+    .nom-collection {
+        font-size: 2.5rem; /* Titre plus imposant */
+    }
+
+    .collection-section summary {
+        padding: 50px 0; /* Plus d'espace respirable */
+    }
+}
+
+/* --- MODE FOCUS (PLEIN ÉCRAN) --- */
+/* --- OPTIMISATION ANTI-SACCADE --- */
+
+.collection-section {
+    /* On garde une transition simple pour l'opacité */
+    transition: opacity 0.4s ease-out; 
+    overflow: hidden;
+    /* On ajoute une marge pour que le titre ne colle pas au bord lors du scroll auto */
+    scroll-margin-top: 50px; 
+}
+
+.collection-section.hidden-mode {
+    display: none; /* Toujours radical pour supprimer le saut */
+}
+
+.collection-section.fullscreen-mode {
+    grid-column: 1 / -1;
+    width: 100%;
+    /* On retire l'animation fadeIn d'ici, car c'est le JS qui va la gérer 
+       de manière synchronisée pour un centrage parfait */
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+/* On prépare la galerie pour l'effet "Soyeux" du JS */
+.collection-section[open] .galerie {
+    display: flex;
+    opacity: 0; /* Elle commence invisible pour que le JS la fasse apparaître proprement */
+    transform: translateY(20px); /* Elle commence un peu plus bas */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform; /* Aide le navigateur à rester fluide */
+}
+
+/* Animation de secours si jamais le JS est lent */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- NAVIGATION INTERNE LIGHTBOX --- */
+
+/* Style des boutons Précédent et Suivant */
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4); /* Fond noir transparent */
+    color: white;
+    border: none;
+    font-size: 50px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    z-index: 10001; /* Doit être au-dessus de l'image lightbox */
+    font-family: Arial, sans-serif; /* Pour des chevrons bien nets */
+}
+
+/* Effet au survol : fond un peu plus clair */
+.lightbox-prev:hover, .lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Positionnement à gauche et à droite */
+.lightbox-prev {
+    left: 20px;
+    border-radius: 0 5px 5px 0;
+}
+
+.lightbox-next {
+    right: 20px;
+    border-radius: 5px 0 0 5px;
+}
+
+/* Adaptation pour les petits écrans (mobiles) */
+@media (max-width: 768px) {
+    .lightbox-prev, .lightbox-next {
+        font-size: 30px;
+        padding: 10px 15px;
+        background: rgba(0, 0, 0, 0.6); /* Plus sombre sur mobile pour la lisibilité */
+    }
+    
+    .lightbox-prev { left: 5px; }
+    .lightbox-next { right: 5px; }
+}
+
+/* --- STYLE NAVIGATION LIGHTBOX --- */
+.lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 40px;
+    padding: 20px 25px;
+    cursor: pointer;
+    z-index: 10001;
+    transition: 0.3s;
+}
+
+.lightbox-prev:hover, .lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-prev { left: 10px; border-radius: 0 5px 5px 0; }
+.lightbox-next { right: 10px; border-radius: 5px 0 0 5px; }
+
+/* Correction centrage image lightbox */
+.lightbox-content {
+    max-width: 85%;
+    max-height: 80vh;
+    object-fit: contain;
+}
