@@ -1,3 +1,7 @@
+html {
+    background-color: #f4f4f4; /* La même couleur que ton body */
+}
+
 body {
     background-color: #f4f4f4;
     font-family: 'Georgia', serif;
@@ -17,6 +21,28 @@ h1 {
     letter-spacing: 2px;
     margin-bottom: 50px;
     margin-top: 30px;
+    contain: layout; /* Dit au navigateur : ce titre ne bougera pas à cause du reste */
+    backface-visibility: hidden; /* Empêche les micro-vibrations sur les écrans HD */
+}
+
+/* --- TITRE STABLE ET FLUIDE --- */
+.transition-site.page-loaded h1 {
+    animation: slideUpStable 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideUpStable {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+/* On donne une couleur de fond aux cadres des images en attendant qu'elles chargent */
+.miniature-collection, .image-lien {
+    background: #eee; /* Un gris très léger qui "occupe" l'espace */
 }
 
 /* NAVIGATION */
@@ -776,4 +802,41 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     max-width: 85%;
     max-height: 80vh;
     object-fit: contain;
+}
+
+
+/* --- ANIMATIONS DE TRANSITION ENTRE PAGES --- */
+
+/* État initial de toutes les pages */
+.transition-site {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* État quand la page est chargée */
+.transition-site.page-loaded {
+    opacity: 1;
+}
+
+/* État lors du clic pour quitter la page */
+.page-exit {
+    opacity: 0 !important;
+    transform: scale(1.02); /* Léger zoom arrière pour l'effet cinéma */
+    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+}
+
+/* Animation spécifique pour le titre des collections à l'arrivée */
+.transition-site.page-loaded h1 {
+    animation: slideUp 1s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Garde l'animation pour l'accueil, mais force l'affichage immédiat pour les collections */
+body:not(.home-page).transition-site {
+    opacity: 1 !important;
+    animation: none !important;
 }

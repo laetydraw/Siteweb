@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <title>LaetyDraw - Accueil</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="collections.html" as="document">
+<link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#f4f4f4">
+<style>
+  /* On injecte un micro-style directement ici pour qu'il soit lu AVANT le fichier CSS */
+  html, body { background-color: #f4f4f4 !important; }
+</style>
+
 </head>
-<body class="home-page"> <header class="top-bar">
-        
-    </header>
+
+<body class="home-page transition-site">
 
     <section id="accueil" class="hero">
         <div class="hero-content">
@@ -22,5 +30,8 @@
     <footer><p>&copy; 2026 LaetyDraw. Tous droits réservés.</p>
     <p> Contact à : laety.draw@proton.me</p>
     </footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
