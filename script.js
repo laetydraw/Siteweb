@@ -17,34 +17,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Initialisation du mode Focus pour les collections
-    const allDetails = document.querySelectorAll('.collection-section');
-    allDetails.forEach((details) => {
-        const galerie = details.querySelector('.galerie');
+   // 3. Gestion du Mode Focus et de l'Apparition des Images
+    const toutesLesSections = document.querySelectorAll('details');
 
-        details.addEventListener('toggle', () => {
+    toutesLesSections.forEach((details) => {
+        details.addEventListener('toggle', (e) => {
+            // On empêche l'événement de remonter pour ne pas mélanger parent et enfant
+            e.stopPropagation();
+
+            const galerie = details.querySelector('.galerie');
+
             if (details.open) {
-                details.classList.add('fullscreen-mode');
-                allDetails.forEach(other => {
-                    if (other !== details) other.classList.add('hidden-mode');
-                });
+                // A. GESTION DU MODE FOCUS (uniquement pour les grandes collections)
+                if (details.classList.contains('collection-section')) {
+                    details.classList.add('fullscreen-mode');
+                    // On cache les autres grandes collections
+                    document.querySelectorAll('.collection-section').forEach(other => {
+                        if (other !== details) other.classList.add('hidden-mode');
+                    });
+                    
+                    const targetY = details.offsetTop - 50; 
+                    window.scrollTo({ top: targetY, behavior: 'auto' });
+                }
 
-                const targetY = details.offsetTop - 50; 
-                window.scrollTo({ top: targetY, behavior: 'auto' });
-
-                galerie.style.opacity = '0';
-                galerie.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    galerie.style.transition = 'all 0.6s ease-out';
-                    galerie.style.opacity = '1';
-                    galerie.style.transform = 'translateY(0)';
-                    updateArrows(galerie);
-                }, 50);
+                // B. APPARITION DES IMAGES (pour TOUTES les galeries, sous-collections incluses)
+                if (galerie) {
+                    galerie.style.opacity = '0';
+                    galerie.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        galerie.style.transition = 'all 0.6s ease-out';
+                        galerie.style.opacity = '1';
+                        galerie.style.transform = 'translateY(0)';
+                        updateArrows(galerie); // On active les flèches
+                    }, 50);
+                }
             } else {
-                details.classList.remove('fullscreen-mode');
-                allDetails.forEach(other => other.classList.remove('hidden-mode'));
-                details.scrollIntoView({ behavior: 'auto', block: 'center' });
+                // C. SORTIE DU MODE FOCUS
+                if (details.classList.contains('collection-section')) {
+                    details.classList.remove('fullscreen-mode');
+                    document.querySelectorAll('.collection-section').forEach(other => {
+                        other.classList.remove('hidden-mode');
+                    });
+                    details.scrollIntoView({ behavior: 'auto', block: 'center' });
+                }
             }
         });
     });
