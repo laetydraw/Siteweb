@@ -85,7 +85,7 @@ h1 {
 
     /* L'IMAGE DE FOND */
     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), 
-                      url('images/utile/nue_femme_assise.jpg');
+                      url('images/utile/nus/seanceA/nue_femme_assise.jpg');
     
     background-size: cover !important; /* REMPLIT TOUT sans déformer */
     background-position: center 20% !important; /* Aligne sur le visage/haut du corps */
