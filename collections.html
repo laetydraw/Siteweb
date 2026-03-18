@@ -5,17 +5,20 @@
     <title>Collections - LaetyDraw</title>
     <meta name="theme-color" content="#f4f4f4">
     <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="style.css?version=1.0">
+    <link rel="stylesheet" href="style.css?version=1.1">
 </head>
 
-<body class="transition-site">
+<body class="transition-site page-collections">
     <nav class="navigation">
         <a href="index.html">Accueil</a>
         <a href="collections.html">Collections</a>
         <a href="a-propos.html">À Propos</a>
         <a href="FAQ.html">F.A.Q.</a>
     </nav>
-    <h1>Les Collections</h1>
+    <section class="intro-collections">
+    <p class="intro-collections-label">Collections</p>
+    <h1>Explorer les œuvres</h1>
+</section>
 
     <section class="galerie-conteneur">
 
@@ -33,13 +36,13 @@
         
         <div class="galerie-wrapper">
 
-            <button class="btn-scroll-left" onclick="scrollGalerieGauche(this)" aria-label="Défiler vers la gauche">
+            <button class="btn-scroll-left">
         <span class="fleche-gauche"></span>
     </button>
 
         <div class="galerie">
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Corps_en_mouvement.jpg" alt="Corps_en_mouvement" loading="lazy">
                 </div>
                 <h2>Corps en mouvement</h2>
@@ -54,7 +57,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Corps_fragmente.jpg" alt="Corps_fragmenté" loading="lazy">
                 </div>
                 <h2>Corps fragmenté</h2>
@@ -68,7 +71,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Eclosion.jpg" alt="Eclosion" loading="lazy">
                 </div>
                 <h2>Éclosion</h2>
@@ -82,7 +85,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Etude_de_presence.jpg" alt="Etude_de_présence" loading="lazy">
                 </div>
                 <h2>Étude de présence</h2>
@@ -96,7 +99,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Etude_pour_un_corps_low.jpg" alt="Etude_pour_un_corps" loading="lazy">
                 </div>
                 <h2>Étude pour un corps</h2>
@@ -110,7 +113,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Figure_chromatique.jpg" alt="Figure_chromatique" loading="lazy">
                 </div>
                 <h2>Figure chromatique</h2>
@@ -124,7 +127,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Variation_sur_le_nu.jpg" alt="Variation_sur_le_nu" loading="lazy">
                 </div>
                 <h2>Variation sur le nu</h2>
@@ -138,7 +141,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/Colorees_Composition_figure.jpg" alt="Composition_figure" loading="lazy">
                 </div>
                 <h2>Femme au miroir</h2>
@@ -154,7 +157,7 @@
 
             </div>
 
-            <button class="btn-scroll-right" onclick="scrollGalerieDroite(this)" aria-label="Défiler vers la droite">
+            <button class="btn-scroll-right">
         <span class="fleche-droite"></span>
     </button>
 
@@ -189,13 +192,13 @@
                 </summary>
 
                 <div class="galerie-wrapper">
-                    <button class="btn-scroll-left" onclick="scrollGalerieGauche(this)" aria-label="Défiler vers la gauche">
+                    <button class="btn-scroll-left">
                         <span class="fleche-gauche"></span>
                     </button>
 
                     <div class="galerie">
                         <article class="oeuvre">
-                            <div class="image-lien" onclick="ouvrirLightbox(this)">
+                            <div class="image-lien">
                                 <img src="images/utile/nus/seanceA/nue_femme_assise.jpg" alt="La femme assise" loading="lazy">
                             </div>
                             <h2>La femme assise</h2>
@@ -209,7 +212,7 @@
                         </article>
 
                         <article class="oeuvre">
-                            <div class="image-lien" onclick="ouvrirLightbox(this)">
+                            <div class="image-lien">
                                 <img src="images/utile/nus/seanceA/nue_Helene.jpg" alt="Hélène" loading="lazy">
                             </div>
                             <h2>Hélène</h2>
@@ -223,7 +226,7 @@
                         </article>
 
                         <article class="oeuvre">
-                            <div class="image-lien" onclick="ouvrirLightbox(this)">
+                            <div class="image-lien">
                                 <img src="images/utile/nus/seanceA/nue_La_penseuse.jpg" alt="La penseuse" loading="lazy">
                             </div>
                             <h2>La penseuse</h2>
@@ -237,7 +240,7 @@
                         </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/nus/seanceA/nue_Louise.jpg" alt="Louise" loading="lazy">
                 </div>
                 <h2>Louise</h2>
@@ -251,7 +254,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/nus/seanceA/nue_Marie.jpg" alt="Marie" loading="lazy">
                 </div>
                 <h2>Marie</h2>
@@ -265,7 +268,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/nus/seanceA/nue_Mey_1.jpg" alt="Mey_1" loading="lazy">
                 </div>
                 <h2>Mey (1)</h2>
@@ -279,7 +282,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/nus/seanceA/nue_Mey_2.jpg" alt="Mey_2" loading="lazy">
                 </div>
                 <h2>Mey (2)</h2>
@@ -293,7 +296,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/nus/seanceA/nue_Oda.jpg" alt="Oda" loading="lazy">
                 </div>
                 <h2>Oda</h2>
@@ -309,7 +312,7 @@
 
         </div>
 
-            <button class="btn-scroll-right" onclick="scrollGalerieDroite(this)" aria-label="Défiler vers la droite">
+            <button class="btn-scroll-right">
                     <span class="fleche-droite"></span>
                 </button>
 
@@ -329,14 +332,14 @@
 
                 <div class="galerie-wrapper">
 
-                    <button class="btn-scroll-left" onclick="scrollGalerieGauche(this)">
+                    <button class="btn-scroll-left">
                         <span class="fleche-gauche"></span>
                     </button>
 
                     <div class="galerie">
 
                         <article class="oeuvre">
-                            <div class="image-lien" onclick="ouvrirLightbox(this)">
+                            <div class="image-lien">
                                 <img src="images/utile/nus/seanceB/nus_seanceB_1.jpg" alt="Séance B 1" loading="lazy">
                             </div>
                             <h2>Séance B – 1</h2>
@@ -350,7 +353,7 @@
                         </article>
 
                 <article class="oeuvre">
-                    <div class="image-lien" onclick="ouvrirLightbox(this)">
+                    <div class="image-lien">
                         <img src="images/utile/nus/seanceB/nus_seanceB_2.jpg" alt="Séance B 2" loading="lazy">
                     </div>
                     <h2>Séance B – 2</h2>
@@ -364,7 +367,7 @@
                 </article>
 
                 <article class="oeuvre">
-                    <div class="image-lien" onclick="ouvrirLightbox(this)">
+                    <div class="image-lien">
                         <img src="images/utile/nus/seanceB/nus_seanceB_3.jpg" alt="Séance B 3" loading="lazy">
                     </div>
                     <h2>Séance B – 3</h2>
@@ -379,7 +382,7 @@
 
             </div>
 
-            <button class="btn-scroll-right" onclick="scrollGalerieDroite(this)">
+            <button class="btn-scroll-right">
                 <span class="fleche-droite"></span>
             </button>
 
@@ -399,14 +402,14 @@
 
                 <div class="galerie-wrapper">
 
-                    <button class="btn-scroll-left" onclick="scrollGalerieGauche(this)">
+                    <button class="btn-scroll-left">
                         <span class="fleche-gauche"></span>
                     </button>
 
                     <div class="galerie">
 
                         <article class="oeuvre">
-                            <div class="image-lien" onclick="ouvrirLightbox(this)">
+                            <div class="image-lien">
                                 <img src="images/utile/nus/seanceC/nus_seanceC_1.jpg" alt="Séance C 1" loading="lazy">
                             </div>
                             <h2>Séance C – 1</h2>
@@ -420,7 +423,7 @@
                         </article>
 
                 <article class="oeuvre">
-                    <div class="image-lien" onclick="ouvrirLightbox(this)">
+                    <div class="image-lien">
                         <img src="images/utile/nus/seanceC/nus_seanceC_2.jpg" alt="Séance C 2" loading="lazy">
                     </div>
                     <h2>Séance C – 2</h2>
@@ -435,7 +438,7 @@
 
             </div>
 
-            <button class="btn-scroll-right" onclick="scrollGalerieDroite(this)">
+            <button class="btn-scroll-right">
                 <span class="fleche-droite"></span>
             </button>
 
@@ -459,13 +462,13 @@
         
         <div class="galerie-wrapper">
 
-            <button class="btn-scroll-left" onclick="scrollGalerieGauche(this)" aria-label="Défiler vers la gauche">
+            <button class="btn-scroll-left">
         <span class="fleche-gauche"></span>
     </button>
 
         <div class="galerie">
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/abstraction/abstraction_1.jpg" alt="abstraction 1" loading="lazy">
                 </div>
                 <h2>Abstraction 1</h2>
@@ -480,7 +483,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/abstraction/abstraction_2.jpg" alt="Abstraction 2" loading="lazy">
                 </div>
                 <h2>Abstraction 2</h2>
@@ -495,7 +498,7 @@
 
             </div>
 
-            <button class="btn-scroll-right" onclick="scrollGalerieDroite(this)" aria-label="Défiler vers la droite">
+            <button class="btn-scroll-right">
         <span class="fleche-droite"></span>
     </button>
 
@@ -516,13 +519,13 @@
         
         <div class="galerie-wrapper">
 
-            <button class="btn-scroll-left" onclick="scrollGalerieGauche(this)" aria-label="Défiler vers la gauche">
+            <button class="btn-scroll-left">
         <span class="fleche-gauche"></span>
     </button>
 
         <div class="galerie">
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/grandformat_Felicie.jpg" alt="Félicie" loading="lazy">
                 </div>
                 <h2>Félicie</h2>
@@ -536,7 +539,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/grandformat_Alma.jpg" alt="Alma" loading="lazy">
                 </div>
                 <h2>Alma</h2>
@@ -550,7 +553,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/grandformat_Judith.jpg" alt="Judith" loading="lazy">
                 </div>
                 <h2>Judith</h2>
@@ -564,7 +567,7 @@
             </article>
 
             <article class="oeuvre">
-                <div class="image-lien" onclick="ouvrirLightbox(this)">
+                <div class="image-lien">
                     <img src="images/utile/grandformat_Marguerite.jpg" alt="Marguerite" loading="lazy">
                 </div>
                 <h2>Marguerite</h2>
@@ -578,7 +581,7 @@
             </article>
 
 </div>
-            <button class="btn-scroll-right" onclick="scrollGalerieDroite(this)" aria-label="Défiler vers la droite">
+            <button class="btn-scroll-right">
         <span class="fleche-droite"></span>
     </button>
 
@@ -590,6 +593,7 @@
 <footer>
         <p>&copy; 2026 LaetyDraw. Tous droits réservés.</p>
         <p>Contact à : laety.draw@proton.me</p>
+        <p>Version 1.1</p>
     </footer>
 
     <div id="lightbox" class="lightbox" onclick="fermerLightbox()">
@@ -602,6 +606,6 @@
         <div id="caption"></div>
     </div>
 
-    <script src="script.js?version=1.0"></script>
+    <script src="script.js?version=1.1"></script>
 </body>
 </html>

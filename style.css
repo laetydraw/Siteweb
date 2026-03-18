@@ -49,8 +49,7 @@ h1 {
 /* État lors du clic pour quitter la page */
 .page-exit {
     opacity: 0 !important;
-    transform: scale(1.02); /* Léger zoom arrière pour l'effet cinéma */
-    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+    transition: opacity 0.6s ease-out;
 }
 /* Animation spécifique pour le titre des collections à l'arrivée */
 .transition-site.page-loaded h1 {
@@ -74,7 +73,39 @@ body:not(.home-page).transition-site {
     opacity: 1 !important;
     animation: none !important;
 }
+@keyframes cinematicHeroExit {
+    from {
+        transform: scale(1);
+        filter: blur(0);
+    }
+    to {
+        transform: scale(1.08);
+        filter: blur(4px);
+    }
+}
 
+@keyframes cinematicContentFade {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+.home-page.is-transitioning .hero {
+    animation: cinematicHeroExit 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform-origin: center center;
+}
+
+.home-page.is-transitioning .hero-content {
+    animation: cinematicContentFade 0.45s ease-out forwards;
+}
+
+.home-page.is-transitioning {
+    overflow: hidden;
+}
 /* ==================== NAVIGATION ==================== */
 
 .navigation {
@@ -234,8 +265,6 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     /* On garde une transition simple pour l'opacité */
     transition: opacity 0.4s ease-out; 
     overflow: hidden;
-    /* On ajoute une marge pour que le titre ne colle pas au bord lors du scroll auto */
-    scroll-margin-top: 50px; 
 }
 /* 1. Le conteneur global du titre et de l'image */
 .collection-section summary {
@@ -330,6 +359,35 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     transform: scale(1.05); /* Zoom plus léger car on a des bords maintenant */
     filter: grayscale(0%);
 }
+.intro-collections {
+    max-width: 900px;
+    margin: 40px auto 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.intro-collections-label {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.intro-collections h1 {
+    margin: 0 0 20px 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #111;
+}
+
+.intro-collections-texte {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #555;
+}
 /* ==================== SOUS-COLLECTIONS ==================== */
 
 /* Cache la miniature de la sous-collection quand celle-ci est ouverte */
@@ -348,6 +406,10 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     width: 90%; /* Un peu plus étroit pour montrer l'imbrication */
     margin: 20px auto; 
     border: none; /* On enlève les bordures par défaut */
+}
+.collection-section,
+.sous-collection {
+    scroll-margin-top: 80px;
 }
 .sous-collection summary {
     display: flex;
@@ -369,10 +431,14 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
 }
 .nom-sous-collection {
     font-family: 'Georgia', serif;
-    font-size: 1.6rem; /* Plus petit que les grandes (2.2rem) */
+    font-size: 1.6rem;
     font-style: italic;
-    color: #555; /* Un gris foncé au lieu du noir pur */
+    color: #555;
     flex: 1;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    min-height: 2.2em;
 }
 /* Miniature Sous-Collection (Style Affiche réduite) */
 .miniature-sous-collection {
@@ -411,6 +477,9 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     height: 10px;
     border-right: 2px solid #666;
     border-bottom: 2px solid #666;
+}
+.sous-collection[open] .galerie-wrapper {
+    margin-top: 10px;
 }
 
 /* ==================== GALERIES ET ŒUVRES ==================== */
@@ -695,12 +764,26 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     margin-top: 0;
     padding-top: 10px;
 }
-.collection-section[open] .galerie {
+.collection-section[open] .galerie,
+.sous-collection[open] .galerie {
     display: flex;
-    opacity: 0; /* Elle commence invisible pour que le JS la fasse apparaître proprement */
-    transform: translateY(20px); /* Elle commence un peu plus bas */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform; /* Aide le navigateur à rester fluide */
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+    will-change: opacity, transform, filter;
+    transform-origin: center center;
+}
+@keyframes cinematicReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
 }
 
 
