@@ -1,7 +1,8 @@
+/* ==================== BASE ==================== */
+
 html {
     background-color: #f4f4f4; /* La même couleur que ton body */
 }
-
 body {
     background-color: #f4f4f4;
     font-family: 'Georgia', serif;
@@ -12,7 +13,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
 h1 {
     text-align: center;
     color: #111;
@@ -24,28 +24,59 @@ h1 {
     contain: layout; /* Dit au navigateur : ce titre ne bougera pas à cause du reste */
     backface-visibility: hidden; /* Empêche les micro-vibrations sur les écrans HD */
 }
-
-/* --- TITRE STABLE ET FLUIDE --- */
-.transition-site.page-loaded h1 {
-    animation: slideUpStable 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes slideUpStable {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
 /* On donne une couleur de fond aux cadres des images en attendant qu'elles chargent */
 .miniature-collection, .image-lien {
     background: #eee; /* Un gris très léger qui "occupe" l'espace */
 }
+.subtitle{
+    display:block;
+    font-style: italic;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
 
-/* NAVIGATION */
+/* ==================== ANIMATIONS GLOBALES ==================== */
+
+/* État initial de toutes les pages */
+.transition-site {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+/* État quand la page est chargée */
+.transition-site.page-loaded {
+    opacity: 1;
+}
+/* État lors du clic pour quitter la page */
+.page-exit {
+    opacity: 0 !important;
+    transform: scale(1.02); /* Léger zoom arrière pour l'effet cinéma */
+    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+}
+/* Animation spécifique pour le titre des collections à l'arrivée */
+.transition-site.page-loaded h1 {
+    animation: slideUp 1s ease-out forwards;
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes zoomIn {
+    from {transform: scale(0.7); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+/* Animation de secours si jamais le JS est lent */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Garde l'animation pour l'accueil, mais force l'affichage immédiat pour les collections */
+body:not(.home-page).transition-site {
+    opacity: 1 !important;
+    animation: none !important;
+}
+
+/* ==================== NAVIGATION ==================== */
+
 .navigation {
     text-align: center;
     margin-bottom: 30px;
@@ -53,7 +84,6 @@ h1 {
     border-bottom: 1px solid #eee;
     padding: 15px 0;
 }
-
 .navigation a {
     margin: 0 20px;
     text-decoration: none;
@@ -64,15 +94,11 @@ h1 {
     letter-spacing: 1px;
     transition: color 0.3s;
 }
-
 .navigation a:hover {
     color: #000;
 }
 
-/* --- CONFIGURATION ACCUEIL IMMERSIF --- */
-
-/* LE HERO : L'IMAGE DE FOND TOTALE */
-/* --- FORCE LE PLEIN ÉCRAN SUR L'ACCUEIL --- */
+/* ==================== ACCUEIL / HERO ==================== */
 
 .home-page .hero {
     position: relative;
@@ -96,14 +122,12 @@ h1 {
     align-items: center;
     justify-content: flex-start; /* Permet au padding-top de gérer la hauteur du texte */
 }
-
 /* On s'assure que le body ne bloque rien */
 .home-page {
     margin: 0 !important;
     padding: 0 !important;
     overflow-x: hidden; /* Évite un scroll horizontal parasite */
 }
-
 /* LE SOUS-TITRE (Artiste plasticienne) */
 .home-page .subtitle {
     font-size: 1rem; /* Plus petit */
@@ -117,9 +141,6 @@ h1 {
         0 0 15px rgba(255, 255, 255, 0.8), 
         0 0 5px rgba(255, 255, 255, 0.5);
 }
-
-/* --- RETOUR AUX STYLES D'ORIGINE POUR LE TEXTE ET BOUTON --- */
-
 .hero-content p {
     font-family: 'Georgia', serif;
     font-size: 3rem; /* On l'agrandit un peu pour l'impact */
@@ -130,7 +151,6 @@ h1 {
         0 0 15px rgba(255, 255, 255, 0.8), 
         0 0 5px rgba(255, 255, 255, 0.5);
 }
-
 .btn-explorer {
     display: inline-block;
     background-color: transparent;
@@ -149,34 +169,74 @@ h1 {
         0 0 15px rgba(255, 255, 255, 0.8), 
         0 0 5px rgba(255, 255, 255, 0.5);
 }
-
 .btn-explorer:hover {
     transform: translateY(-3px);
     background-color: rgb(211, 197, 197);
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
-
-.subtitle{
-    display:block;
-    font-style: italic;
-    margin-left: 20px;
-    font-size: 0.9em;
-}
-
 /* On cache le footer sur l'accueil pour garder l'aspect épuré "Affiche" */
 .home-page footer {
     display: none;
 }
 
-/* --- SECTION COLLECTIONS : TITRES & ACCORDÉONS --- */
+/* ==================== STRUCTURE GÉNÉRALE ==================== */
 
+footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #eee; margin-top: auto; }
+.container-infos {
+    max-width: 800px;
+    margin: 20px auto;
+}
+.comment-reserver {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+.comment-reserver summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    text-align: center;
+}
+.comment-reserver summary::after { content: ' ▼'; font-size: 0.8rem; color: #777; }
+.comment-reserver[open] summary::after { content: ' ▲'; }
+.mon-bouton-newsletter {
+    display: table;
+    margin: 20px auto;
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+.mon-bouton-newsletter:hover {
+    background-color: white;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+    transform: translateY(-2px);
+}
+.artiste-container { max-width: 1000px; margin: 0 auto; display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
+.artiste-image { flex: 1; min-width: 300px; }
+.artiste-image img { width: 100%; border-radius: 2px; box-shadow: 15px 15px 0px #eee; }
+.artiste-texte { flex: 1.5; min-width: 300px; }
+
+/* ==================== COLLECTIONS ==================== */
 
 .collection-section {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto 20px auto; /* Plus d'espace entre les collections */
+    /* On garde une transition simple pour l'opacité */
+    transition: opacity 0.4s ease-out; 
+    overflow: hidden;
+    /* On ajoute une marge pour que le titre ne colle pas au bord lors du scroll auto */
+    scroll-margin-top: 50px; 
 }
-
 /* 1. Le conteneur global du titre et de l'image */
 .collection-section summary {
     display: flex;
@@ -190,7 +250,6 @@ h1 {
 .collection-section summary::-webkit-details-marker {
     display: none; /* Cache le triangle sur Chrome/Safari */
 }
-
 /* 2. La ligne du haut : Titre + Flèche */
 .titre-container {
     display: flex;
@@ -207,7 +266,6 @@ h1 {
     color: #000;
     text-transform: uppercase;
 }
-
 .nom-collection {
     font-family: 'Georgia', serif;
     font-size: clamp(1.5rem, 5vw, 2.8rem); /* Taille fluide : s'adapte à l'écran */
@@ -230,224 +288,20 @@ h1 {
 .collection-section[open] .fleche-indication {
     transform: rotate(-135deg); /* Pointe vers le haut */
 }
-
-/* GALERIE & OEUVRES */
-/* --- GALERIE HORIZONTALE --- */
-.galerie {
-    display: flex; /* Aligne les œuvres sur une seule ligne */
-    flex-wrap: nowrap; /* EMPÊCHE le retour à la ligne */
-    overflow-x: auto; /* Active le scroll horizontal */
-    overflow-y: hidden; /* Désactive le scroll vertical inutile */
-    gap: 40px; /* Espace entre les tableaux */
-    padding: 40px 20px;
-    scroll-behavior: smooth; /* Rend le défilement fluide */
-    -webkit-overflow-scrolling: touch; /* Optimisation pour mobile */
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+/* On garde un petit effet discret sur le titre séparément si tu veux */
+.collection-section summary:hover {
+    color: #666; /* Le texte change de couleur, mais l'image ne bouge pas tant qu'on ne la touche pas */
 }
-
-/* Personnalisation de la barre de défilement (Scrollbar) pour qu'elle soit élégante */
-.galerie::-webkit-scrollbar {
-    height: 8px; /* Hauteur de la barre */
+/* COLLECTIONS : comportement à l'ouverture */
+.collection-section[open] > summary .miniature-collection {
+    display: none;
 }
-
-.galerie::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.galerie::-webkit-scrollbar-thumb {
-    background: #ccc; /* Couleur de la barre */
-    border-radius: 10px;
-}
-
-.galerie::-webkit-scrollbar-thumb:hover {
-    background: #999;
-}
-
-/* On s'assure que les articles ne rétrécissent pas */
-/* --- ŒUVRES : ALIGNEMENT ET STYLE --- */
-
-.oeuvre {
-    flex: 0 0 350px; /* Largeur fixe pour le scroll horizontal */
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #eee;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    
-    /* Configuration pour l'alignement vertical */
-    display: flex;
-    flex-direction: column;
-}
-
-.oeuvre:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
-}
-
-/* Cadre de l'œuvre */
-.image-lien {
-    width: 100%;
-    height: 400px; /* Augmenté pour un rendu plus majestueux */
-    background: #ffffff; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-}
-
-/* L'image avec son effet d'ombre portée */
-.image-lien img {
-    max-width: 90%; 
-    max-height: 90%;
-    width: auto;
-    height: auto;
-    object-fit: contain; 
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    
-    /* L'ombre douce qui simule l'épaisseur du papier */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
-    border: 1px solid rgba(0,0,0,0.05); /* Un contour presque invisible */
-}
-
-/* Effet au survol : l'ombre s'accentue quand l'image zoome */
-.image-lien:hover img {
-    transform: scale(1.05);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.25);
-}
-
-/* TITRE */
-.oeuvre h2 {
-    
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    min-height: 2.8em; /* Réserve la place pour 2 lignes de texte */
-}
-
-/* DÉTAILS (Dimensions, Technique) */
-.details {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* --- LE BLOC BAS (Prix, Statut, Bouton) --- */
-/* On pousse tout ce qui suit vers le bas de la carte */
-.prix {
-    margin-top: auto; 
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding-top: 15px;
-    border-top: 1px solid #f9f9f9;
-}
-
-.statut { 
-    padding: 6px 10px; 
-    border-radius: 3px; 
-    display: inline-block; 
-    font-size: 0.75rem; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-    margin-bottom: 15px; 
-    letter-spacing: 1px;
-}
-
-.disponible { background-color: #e6fffa; color: #00875a; }
-.reservee { background-color: #fff3cd; color: #856404; }
-.vendue { background-color: #fceaea; color: #c53030; }
-
-/* BOUTON RÉSERVER */
-.mon-bouton-reserve {
-    display: block;
-    border: 1px solid #111;
-    background-color: transparent;
+/* AJUSTEMENT DU TITRE QUAND OUVERT */
+.collection-section[open] summary {
+    border-bottom: 2px solid #111;
+    margin-bottom: 30px;
     color: #111;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 0.8rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    transition: all 0.3s;
 }
-
-.mon-bouton-reserve:hover:not(.disabled) {
-    background-color: #111;
-    color: white;
-}
-
-.mon-bouton-reserve.disabled {
-    border-color: #ccc;
-    color: #ccc;
-    cursor: not-allowed;
-}
-.btn-retour-menu {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    text-decoration: none;
-    color: #999;
-    font-size: 0.8rem;
-    padding: 8px 15px;
-    border: 1px solid #eee;
-    border-radius: 20px;
-    transition: 0.3s;
-}
-.container-infos {
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-.comment-reserver {
-    background-color: white;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-}
-
-.comment-reserver summary {
-    font-weight: bold;
-    cursor: pointer;
-    list-style: none;
-    text-align: center;
-}
-
-.comment-reserver summary::after { content: ' ▼'; font-size: 0.8rem; color: #777; }
-.comment-reserver[open] summary::after { content: ' ▲'; }
-
-.mon-bouton-newsletter {
-    display: table;
-    margin: 20px auto;
-    background-color: #2c3e50;
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.mon-bouton-newsletter:hover {
-    background-color: white;
-    color: #2c3e50;
-    border: 1px solid #2c3e50;
-    transform: translateY(-2px);
-}
-
-/* SECTION ARTISTE */
-.artiste-container { max-width: 1000px; margin: 0 auto; display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
-.artiste-image { flex: 1; min-width: 300px; }
-.artiste-image img { width: 100%; border-radius: 2px; box-shadow: 15px 15px 0px #eee; }
-.artiste-texte { flex: 1.5; min-width: 300px; }
-
-footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #eee; margin-top: auto; }
-
 /* LA MINIATURE : On enlève le fond blanc et on libère la hauteur */
 .miniature-collection {
     width: 100%;
@@ -459,7 +313,6 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     justify-content: center;
     overflow: hidden;
 }
-
 .miniature-collection img {
     max-width: 100%;
     max-height: 70vh;
@@ -477,29 +330,81 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     transform: scale(1.05); /* Zoom plus léger car on a des bords maintenant */
     filter: grayscale(0%);
 }
-
-
-/* On garde un petit effet discret sur le titre séparément si tu veux */
-.collection-section summary:hover {
-    color: #666; /* Le texte change de couleur, mais l'image ne bouge pas tant qu'on ne la touche pas */
-}
-
-/* --- LA MAGIE : FAIRE DISPARAÎTRE L'IMAGE QUAND C'EST OUVERT --- */
-.collection-section[open] > summary .miniature-collection {
-    display: none;
-}
+/* ==================== SOUS-COLLECTIONS ==================== */
 
 /* Cache la miniature de la sous-collection quand celle-ci est ouverte */
 .sous-collection[open] > summary .miniature-sous-collection {
     display: none;
 }
-
+.sous-collections-container {
+    padding: 20px 0;
+}
 /* Suppression des traits noirs indésirables */
 .sous-collection[open] summary {
     border-bottom: 1px solid #eee; /* Ligne très fine quand c'est ouvert */
     margin-bottom: 20px;
 }
-
+.sous-collection {
+    width: 90%; /* Un peu plus étroit pour montrer l'imbrication */
+    margin: 20px auto; 
+    border: none; /* On enlève les bordures par défaut */
+}
+.sous-collection summary {
+    display: flex;
+    flex-direction: column; /* Structure verticale comme les grandes */
+    align-items: flex-start;
+    padding: 20px 0;
+    cursor: pointer;
+    list-style: none;
+    border-bottom: 1px solid #ddd; /* Ligne plus claire que les grandes collections */
+}
+/* Ligne Titre + Flèche pour la sous-collection */
+.sous-collection .titre-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+.nom-sous-collection {
+    font-family: 'Georgia', serif;
+    font-size: 1.6rem; /* Plus petit que les grandes (2.2rem) */
+    font-style: italic;
+    color: #555; /* Un gris foncé au lieu du noir pur */
+    flex: 1;
+}
+/* Miniature Sous-Collection (Style Affiche réduite) */
+.miniature-sous-collection {
+    width: 100%;
+    max-width: 600px; /* Taille limitée pour ne pas noyer la page */
+    height: auto;
+    background-color: transparent;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.miniature-sous-collection img {
+    max-width: 100%;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Respect total de l'image */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Ombre plus discrète */
+    filter: grayscale(10%);
+    transition: 0.4s ease;
+}
+/* Effet au survol */
+.sous-collection summary:hover .miniature-sous-collection {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+/* Cacher le triangle par défaut du navigateur */
+.sous-collection summary::marker, 
+.sous-collection summary::-webkit-details-marker {
+    display: none;
+}
 /* Ajustement de la flèche pour les sous-collections */
 .sous-collection .fleche-indication {
     width: 10px;
@@ -507,74 +412,150 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     border-right: 2px solid #666;
     border-bottom: 2px solid #666;
 }
-/* AJUSTEMENT DU TITRE QUAND OUVERT */
-.collection-section[open] summary {
-    border-bottom: 2px solid #111;
-    margin-bottom: 30px;
-    color: #111;
-}
 
-/* L'animation de la galerie reste la même */
-.collection-section[open] .galerie {
-    animation: apparitionDouce 0.8s ease-out;
-}
+/* ==================== GALERIES ET ŒUVRES ==================== */
 
-/* Le fond noir de la Lightbox */
-.lightbox {
-    display: none; /* Caché par défaut */
-    position: fixed;
-    z-index: 9999; /* Par dessus tout le reste */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9); /* Noir transparent */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.galerie {
+    display: flex; /* Aligne les œuvres sur une seule ligne */
+    flex-wrap: nowrap; /* EMPÊCHE le retour à la ligne */
+    overflow-x: auto; /* Active le scroll horizontal */
+    overflow-y: hidden; /* Désactive le scroll vertical inutile */
+    gap: 40px; /* Espace entre les tableaux */
+    padding: 40px 20px;
+    scroll-behavior: smooth; /* Rend le défilement fluide */
+    -webkit-overflow-scrolling: touch; /* Optimisation pour mobile */
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
 }
-
-/* L'image agrandie */
-.lightbox-content {
-    max-width: 90%;
-    max-height: 80vh;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    border: 3px solid white;
-    animation: zoomIn 0.3s ease;
+.galerie::-webkit-scrollbar {
+    height: 8px; /* Hauteur de la barre */
 }
-
-/* Le titre sous l'image */
-#caption {
-    color: white;
-    margin-top: 15px;
-    font-size: 1.2rem;
-    font-family: 'Georgia', serif;
+.galerie::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
 }
-
-/* Le bouton fermer (X) */
-.close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
+.galerie::-webkit-scrollbar-thumb {
+    background: #ccc; /* Couleur de la barre */
+    border-radius: 10px;
 }
-
-@keyframes zoomIn {
-    from {transform: scale(0.7); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+.galerie::-webkit-scrollbar-thumb:hover {
+    background: #999;
 }
-
 .galerie-wrapper {
     position: relative;
     width: 100%;
 }
+.oeuvre {
+    flex: 0 0 350px; /* Largeur fixe pour le scroll horizontal */
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #eee;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    
+    /* Configuration pour l'alignement vertical */
+    display: flex;
+    flex-direction: column;
+}
+.oeuvre:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+.image-lien {
+    width: 100%;
+    height: 400px; /* Augmenté pour un rendu plus majestueux */
+    background: #ffffff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.image-lien img {
+    max-width: 90%; 
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    
+    /* L'ombre douce qui simule l'épaisseur du papier */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    border: 1px solid rgba(0,0,0,0.05); /* Un contour presque invisible */
+}
+.image-lien:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+}
+.oeuvre h2 {
+    
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    min-height: 2.8em; /* Réserve la place pour 2 lignes de texte */
+}
+.details {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 20px;
+}
+.prix {
+    margin-top: auto; 
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #f9f9f9;
+}
+.statut { 
+    padding: 6px 10px; 
+    border-radius: 3px; 
+    display: inline-block; 
+    font-size: 0.75rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    margin-bottom: 15px; 
+    letter-spacing: 1px;
+}
+.disponible { background-color: #e6fffa; color: #00875a; }
+.reservee { background-color: #fff3cd; color: #856404; }
+.vendue { background-color: #fceaea; color: #c53030; }
 
-/* --- BOUTONS DE NAVIGATION (FIXE POSITION) --- */
+/* ==================== BOUTONS ==================== */
 
-/* Style commun aux deux boutons */
+.mon-bouton-reserve {
+    display: block;
+    border: 1px solid #111;
+    background-color: transparent;
+    color: #111;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.mon-bouton-reserve:hover:not(.disabled) {
+    background-color: #111;
+    color: white;
+}
+.mon-bouton-reserve.disabled {
+    border-color: #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+}
+.btn-retour-menu {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #999;
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    transition: 0.3s;
+}
 .btn-scroll-left, .btn-scroll-right {
     position: absolute;
     top: 50%;
@@ -596,38 +577,26 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     opacity: 0;
     visibility: hidden;
 }
-
-/* POSITION GAUCHE : On force le bouton gauche à gauche */
 .btn-scroll-left {
     left: 20px;
     right: auto; /* Sécurité pour annuler un éventuel héritage */
 }
-
-/* POSITION DROITE : On force le bouton droit à droite */
 .btn-scroll-right {
     right: 20px;
     left: auto; /* Sécurité pour annuler un éventuel héritage */
 }
-
-/* Affichage au survol SI la classe 'active' est ajoutée par le JS */
 .galerie-wrapper:hover .btn-scroll-left.active,
 .galerie-wrapper:hover .btn-scroll-right.active {
     opacity: 1;
     visibility: visible;
 }
-
-/* Hover sur les ronds */
 .btn-scroll-left:hover, .btn-scroll-right:hover {
     background: #111;
 }
-
 .btn-scroll-left:hover .fleche-gauche,
 .btn-scroll-right:hover .fleche-droite {
     border-color: #fff;
 }
-
-/* --- DESSIN DES FLÈCHES --- */
-
 .fleche-gauche {
     width: 12px;
     height: 12px;
@@ -636,7 +605,6 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     transform: rotate(45deg);
     margin-left: 5px;
 }
-
 .fleche-droite {
     width: 12px;
     height: 12px;
@@ -646,7 +614,98 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     margin-right: 5px;
 }
 
-/* --- ADAPTATION POUR GRANDS ÉCRANS (PC/TABLETTES) --- */
+/* ==================== LIGHTBOX ==================== */
+
+/* Le fond noir de la Lightbox */
+.lightbox {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 9999; /* Par dessus tout le reste */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9); /* Noir transparent */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* L'image agrandie */
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80vh;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 3px solid white;
+    animation: zoomIn 0.3s ease;
+}
+/* Le titre sous l'image */
+#caption {
+    color: white;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+}
+/* Le bouton fermer (X) */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 40px;
+    padding: 20px 25px;
+    cursor: pointer;
+    z-index: 10001;
+    transition: background 0.3s ease;
+}
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.lightbox-prev {
+    left: 10px;
+    border-radius: 0 5px 5px 0;
+}
+.lightbox-next {
+    right: 10px;
+    border-radius: 5px 0 0 5px;
+}
+
+/* ==================== MODE FOCUS ==================== */
+
+.collection-section.hidden-mode {
+    display: none; /* Toujours radical pour supprimer le saut */
+}
+.collection-section.fullscreen-mode {
+    grid-column: 1 / -1;
+    width: 100%;
+    /* On retire l'animation fadeIn d'ici, car c'est le JS qui va la gérer 
+       de manière synchronisée pour un centrage parfait */
+    margin-top: 0;
+    padding-top: 10px;
+}
+.collection-section[open] .galerie {
+    display: flex;
+    opacity: 0; /* Elle commence invisible pour que le JS la fasse apparaître proprement */
+    transform: translateY(20px); /* Elle commence un peu plus bas */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform; /* Aide le navigateur à rester fluide */
+}
+
+
+/* ==================== RESPONSIVE ==================== */
+
 @media (min-width: 1024px) {
     .galerie-conteneur {
         display: grid;
@@ -664,274 +723,49 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     }
 
     .miniature-collection {
-        /* On enlève les dimensions fixes qui coupaient l'image */
-        width: 100%;  
-        height: auto; 
-        max-height: 75vh; /* L'image peut être grande mais pas plus que l'écran */
-        margin-left: 0;   /* On annule le décalage de 30px */
-        background-color: transparent;
-    }
+    max-height: 75vh;
+}
 
     .miniature-collection img {
-        width: auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 75vh;
-        object-fit: contain; /* Respect total des proportions */
-    }
-
+    max-height: 75vh;
+}
     .nom-collection {
-    font-family: 'Georgia', serif;
     font-size: 2.2rem;
-    color: #333;
-    white-space: normal; /* Autorise les deux lignes */
-    line-height: 1.2;
-    flex: 1;
-    /* Aligne le texte au centre verticalement dans sa zone */
     display: flex;
     align-items: center;
-    /* Force une hauteur mini basée sur 2 lignes (2.2rem * 1.2 * 2 = env 5.3rem) */
-    min-height: 2.5em; 
+    min-height: 2.5em;
 }
 }
 
-/* --- MODE FOCUS (PLEIN ÉCRAN) --- */
-/* --- OPTIMISATION ANTI-SACCADE --- */
-
-.collection-section {
-    /* On garde une transition simple pour l'opacité */
-    transition: opacity 0.4s ease-out; 
-    overflow: hidden;
-    /* On ajoute une marge pour que le titre ne colle pas au bord lors du scroll auto */
-    scroll-margin-top: 50px; 
-}
-
-.collection-section.hidden-mode {
-    display: none; /* Toujours radical pour supprimer le saut */
-}
-
-.collection-section.fullscreen-mode {
-    grid-column: 1 / -1;
-    width: 100%;
-    /* On retire l'animation fadeIn d'ici, car c'est le JS qui va la gérer 
-       de manière synchronisée pour un centrage parfait */
-    margin-top: 0;
-    padding-top: 10px;
-}
-
-/* On prépare la galerie pour l'effet "Soyeux" du JS */
-.collection-section[open] .galerie {
-    display: flex;
-    opacity: 0; /* Elle commence invisible pour que le JS la fasse apparaître proprement */
-    transform: translateY(20px); /* Elle commence un peu plus bas */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform; /* Aide le navigateur à rester fluide */
-}
-
-/* Animation de secours si jamais le JS est lent */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- NAVIGATION INTERNE LIGHTBOX --- */
-
-/* Style des boutons Précédent et Suivant */
-.lightbox-prev, .lightbox-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4); /* Fond noir transparent */
-    color: white;
-    border: none;
-    font-size: 50px;
-    padding: 15px 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    user-select: none;
-    z-index: 10001; /* Doit être au-dessus de l'image lightbox */
-    font-family: Arial, sans-serif; /* Pour des chevrons bien nets */
-}
-
-/* Effet au survol : fond un peu plus clair */
-.lightbox-prev:hover, .lightbox-next:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
-
-/* Positionnement à gauche et à droite */
-.lightbox-prev {
-    left: 20px;
-    border-radius: 0 5px 5px 0;
-}
-
-.lightbox-next {
-    right: 20px;
-    border-radius: 5px 0 0 5px;
-}
-
-/* Adaptation pour les petits écrans (mobiles) */
 @media (max-width: 768px) {
-    .lightbox-prev, .lightbox-next {
+    .lightbox-prev,
+    .lightbox-next {
         font-size: 30px;
         padding: 10px 15px;
-        background: rgba(0, 0, 0, 0.6); /* Plus sombre sur mobile pour la lisibilité */
     }
-    
-    .lightbox-prev { left: 5px; }
-    .lightbox-next { right: 5px; }
-}
 
-/* --- STYLE NAVIGATION LIGHTBOX --- */
-.lightbox-prev, .lightbox-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 40px;
-    padding: 20px 25px;
-    cursor: pointer;
-    z-index: 10001;
-    transition: 0.3s;
-}
+    .lightbox-prev {
+        left: 5px;
+    }
 
-.lightbox-prev:hover, .lightbox-next:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
+    .lightbox-next {
+        right: 5px;
+    }
 
-.lightbox-prev { left: 10px; border-radius: 0 5px 5px 0; }
-.lightbox-next { right: 10px; border-radius: 5px 0 0 5px; }
-
-/* Correction centrage image lightbox */
-.lightbox-content {
-    max-width: 85%;
-    max-height: 80vh;
-    object-fit: contain;
-}
-
-
-/* --- ANIMATIONS DE TRANSITION ENTRE PAGES --- */
-
-/* État initial de toutes les pages */
-.transition-site {
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-}
-
-/* État quand la page est chargée */
-.transition-site.page-loaded {
-    opacity: 1;
-}
-
-/* État lors du clic pour quitter la page */
-.page-exit {
-    opacity: 0 !important;
-    transform: scale(1.02); /* Léger zoom arrière pour l'effet cinéma */
-    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
-}
-
-/* Animation spécifique pour le titre des collections à l'arrivée */
-.transition-site.page-loaded h1 {
-    animation: slideUp 1s ease-out forwards;
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Garde l'animation pour l'accueil, mais force l'affichage immédiat pour les collections */
-body:not(.home-page).transition-site {
-    opacity: 1 !important;
-    animation: none !important;
-}
-
-/* --- HARMONISATION DES SOUS-COLLECTIONS --- */
-
-.sous-collection {
-    width: 90%; /* Un peu plus étroit pour montrer l'imbrication */
-    margin: 20px auto; 
-    border: none; /* On enlève les bordures par défaut */
-}
-
-.sous-collection summary {
-    display: flex;
-    flex-direction: column; /* Structure verticale comme les grandes */
-    align-items: flex-start;
-    padding: 20px 0;
-    cursor: pointer;
-    list-style: none;
-    border-bottom: 1px solid #ddd; /* Ligne plus claire que les grandes collections */
-}
-
-/* Ligne Titre + Flèche pour la sous-collection */
-.sous-collection .titre-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 15px;
-    gap: 15px;
-}
-
-.nom-sous-collection {
-    font-family: 'Georgia', serif;
-    font-size: 1.6rem; /* Plus petit que les grandes (2.2rem) */
-    font-style: italic;
-    color: #555; /* Un gris foncé au lieu du noir pur */
-    flex: 1;
-}
-
-/* Miniature Sous-Collection (Style Affiche réduite) */
-.miniature-sous-collection {
-    width: 100%;
-    max-width: 600px; /* Taille limitée pour ne pas noyer la page */
-    height: auto;
-    background-color: transparent;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.miniature-sous-collection img {
-    max-width: 100%;
-    max-height: 350px;
-    width: auto;
-    height: auto;
-    object-fit: contain; /* Respect total de l'image */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Ombre plus discrète */
-    filter: grayscale(10%);
-    transition: 0.4s ease;
-}
-
-/* Effet au survol */
-.sous-collection summary:hover .miniature-sous-collection {
-    filter: grayscale(0%);
-    transform: scale(1.05);
-}
-
-/* Cacher le triangle par défaut du navigateur */
-.sous-collection summary::marker, 
-.sous-collection summary::-webkit-details-marker {
-    display: none;
-}
-
-@media (max-width: 768px) {
     .collection-section summary {
-        flex-direction: column; /* On empile sur mobile pour ne pas couper */
+        flex-direction: column;
         align-items: flex-start;
     }
+
     .miniature-collection {
         width: 100%;
         height: 250px;
         margin-left: 0;
         margin-top: 20px;
     }
+
     .nom-collection {
         font-size: 1.8rem;
-        white-space: normal; /* On autorise le retour à la ligne uniquement sur petit écran */
+        white-space: normal;
     }
 }
