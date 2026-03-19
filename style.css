@@ -141,8 +141,8 @@ body:not(.home-page).transition-site {
     box-sizing: border-box;
 
     /* L'IMAGE DE FOND */
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), 
-                      url('images/utile/nus/seanceA/nue_femme_assise.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                      url('images/utile/abstraction/abstraction_1.jpg');
     
     background-size: cover !important; /* REMPLIT TOUT sans déformer */
     background-position: center 20% !important; /* Aligne sur le visage/haut du corps */
@@ -168,42 +168,39 @@ body:not(.home-page).transition-site {
     font-style: italic; /* Optionnel : pour le côté artistique */
     margin-top: 15px;
     opacity: 0.9; /* Un peu plus discret que le nom */
-    text-shadow: 
-        0 0 15px rgba(255, 255, 255, 0.8), 
-        0 0 5px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
 }
+
 .hero-content p {
     font-family: 'Georgia', serif;
-    font-size: 3rem; /* On l'agrandit un peu pour l'impact */
+    font-size: 3rem;
     font-style: italic;
-    color: black;
+    color: #f5f1ea; /* blanc chaud */
     margin-bottom: 30px;
-    text-shadow: 
-        0 0 15px rgba(255, 255, 255, 0.8), 
-        0 0 5px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 3px 18px rgba(0,0,0,0.28);
 }
 .btn-explorer {
     display: inline-block;
-    background-color: transparent;
-    color: #111;
-    padding: 15px 35px; /* Un peu plus de souffle */
+    background: rgba(20, 20, 20, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: white;
+    padding: 15px 35px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 2px;
-    border: 1px solid black; /* Bordure fine blanche */
-    border-radius: 10px; /* Ton style arrondi d'origine */
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 10px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    text-shadow: 
-        0 0 15px rgba(255, 255, 255, 0.8), 
-        0 0 5px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
+
 .btn-explorer:hover {
     transform: translateY(-3px);
-    background-color: rgb(211, 197, 197);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background: rgba(20, 20, 20, 0.62);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.38);
 }
 /* On cache le footer sur l'accueil pour garder l'aspect épuré "Affiche" */
 .home-page footer {
@@ -740,18 +737,20 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
 
 /* Le fond noir de la Lightbox */
 .lightbox {
-    display: none; /* Caché par défaut */
+    display: none;
     position: fixed;
-    z-index: 9999; /* Par dessus tout le reste */
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9); /* Noir transparent */
+    background-color: rgba(0,0,0,0.9);
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
 }
+/* L'image agrandie */
 /* L'image agrandie */
 .lightbox-content {
     max-width: 90%;
@@ -759,6 +758,19 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
     border: 3px solid white;
     animation: zoomIn 0.3s ease;
+    cursor: zoom-in;
+    transition: transform 0.08s ease;
+    transform-origin: center center;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.lightbox-content.zoomed {
+    cursor: grab;
+}
+
+.lightbox-content.zoomed.dragging {
+    cursor: grabbing;
 }
 /* Le titre sous l'image */
 #caption {
@@ -802,6 +814,34 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
 .lightbox-next {
     right: 10px;
     border-radius: 5px 0 0 5px;
+}
+.zoom-btn {
+    position: absolute;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10002;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.08);
+}
+
+.zoom-in {
+    bottom: 90px;
+}
+
+.zoom-out {
+    bottom: 30px;
 }
 
 /* ==================== MODE FOCUS ==================== */
