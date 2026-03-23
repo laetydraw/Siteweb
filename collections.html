@@ -1,15 +1,63 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Collections - LaetyDraw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections d’œuvres | Dessins, nus artistiques, abstractions et peintures | LaetyDraw</title>
+    <meta name="description" content="Explorez les collections de LaetyDraw : dessins artistiques, nus au fusain, compositions colorées, abstractions, grands formats, montagnes, oiseaux et petites toiles originales de Marie-Laetitia.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Marie-Laetitia">
     <meta name="theme-color" content="#f4f4f4">
-    <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="style.css?version=1.3.1">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css?version=1.4.0">
+    <link rel="canonical" href="https://laetydraw.github.io/Siteweb/collections.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="LaetyDraw">
+    <meta property="og:title" content="Collections d’œuvres | LaetyDraw">
+    <meta property="og:description" content="Découvrez les collections de Marie-Laetitia : nus artistiques, dessins contemporains, abstractions colorées, grands formats et œuvres originales.">
+    <meta property="og:url" content="https://laetydraw.github.io/Siteweb/collections.html">
+    <meta property="og:image" content="https://laetydraw.github.io/Siteweb/images/utile/Colorees_Composition_figure.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Collections d’œuvres | LaetyDraw">
+    <meta name="twitter:description" content="Découvrez les collections artistiques de Marie-Laetitia sur LaetyDraw.">
+    <meta name="twitter:image" content="https://laetydraw.github.io/Siteweb/images/utile/Colorees_Composition_figure.jpg">
+
+    <!-- Données structurées -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Collections d’œuvres - LaetyDraw",
+  "url": "https://laetydraw.github.io/Siteweb/collections.html",
+  "description": "Page des collections d’œuvres de Marie-Laetitia sur LaetyDraw : nus artistiques, dessins, abstractions, montagnes, oiseaux et peintures originales.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "LaetyDraw",
+    "url": "https://laetydraw.github.io/Siteweb/"
+  },
+  "about": {
+    "@type": "Person",
+    "name": "Marie-Laetitia",
+    "jobTitle": "Artiste plasticienne"
+  }
+}
+</script>
 </head>
 
 <body class="transition-site page-collections">
+
     <nav class="navigation">
+        <p style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+    Cette page présente les collections d’œuvres de Marie-Laetitia sur LaetyDraw :
+    compositions colorées, croquis d’après modèle vivant, nus artistiques au fusain,
+    abstractions colorées, grands formats, paysages de montagne, petites toiles et oiseaux.
+    Chaque œuvre originale est disponible à la découverte et, selon son statut, à la réservation.
+</p>
         <a href="index.html">Accueil</a>
         <a href="collections.html">Collections</a>
         <a href="a-propos.html">À Propos</a>
@@ -20,6 +68,17 @@
     <h1>Explorer les œuvres</h1>
 </section>
 
+<div class="mode-switch" aria-label="Changer le mode d'affichage">
+    <button id="btn-random-mode" class="mode-btn" title="Mode aléatoire" aria-label="Mode aléatoire">
+        ⤮
+    </button>
+
+    <button id="btn-collections-mode" class="mode-btn active" title="Mode collections" aria-label="Mode collections">
+        ☷
+    </button>
+</div>
+
+<div id="collections-view">
     <section class="galerie-conteneur">
 
     <details class="collection-section"> 
@@ -30,7 +89,7 @@
                 <span class="fleche-indication"></span>
             </div>
             <div class="miniature-collection"> 
-                <img src="images/utile/Colorees_Composition_figure.jpg" alt="Aperçu collection Les compositions colorées" >
+                <img src="images/utile/Colorees_Composition_figure.jpg" alt="Aperçu collection Les compositions colorées">
             </div>
         </summary>
         
@@ -41,9 +100,9 @@
     </button>
 
         <div class="galerie">
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-corps-en-mouvement">
                 <div class="image-lien">
-                    <img src="images/utile/Colorees_Corps_en_mouvement.jpg" alt="Corps_en_mouvement" loading="lazy">
+                    <img src="images/utile/Colorees_Corps_en_mouvement.jpg" alt="Corps en mouvement" loading="lazy">
                 </div>
                 <h2>Corps en mouvement</h2>
                 <div class="details">
@@ -53,12 +112,12 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Corps en mouvement" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Corps%20en%20mouvement" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-corps-fragmente">
                 <div class="image-lien">
-                    <img src="images/utile/Colorees_Corps_fragmente.jpg" alt="Corps_fragmenté" loading="lazy">
+                    <img src="images/utile/Colorees_Corps_fragmente.jpg" alt="Corps fragmenté" loading="lazy">
                 </div>
                 <h2>Corps fragmenté</h2>
                 <div class="details">
@@ -70,7 +129,7 @@
                 <a href="#" class="mon-bouton-reserve disabled">Vendue</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-eclosion">
                 <div class="image-lien">
                     <img src="images/utile/Colorees_Eclosion.jpg" alt="Eclosion" loading="lazy">
                 </div>
@@ -81,12 +140,12 @@
                 </div>
                 <p class="prix">Prix initial : <strong>350 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Éclosion" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20%C3%89closion" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-etude-de-presence">
                 <div class="image-lien">
-                    <img src="images/utile/Colorees_Etude_de_presence.jpg" alt="Etude_de_présence" loading="lazy">
+                    <img src="images/utile/Colorees_Etude_de_presence.jpg" alt="Etude de présence" loading="lazy">
                 </div>
                 <h2>Étude de présence</h2>
                 <div class="details">
@@ -95,12 +154,12 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Étude de présence" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20%C3%89tude%20de%20pr%C3%A9sence" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-etude-pour-un-corps">
                 <div class="image-lien">
-                    <img src="images/utile/Colorees_Etude_pour_un_corps_low.jpg" alt="Etude_pour_un_corps" loading="lazy">
+                    <img src="images/utile/Colorees_Etude_pour_un_corps_low.jpg" alt="Etude pour un corps" loading="lazy">
                 </div>
                 <h2>Étude pour un corps</h2>
                 <div class="details">
@@ -112,9 +171,9 @@
                 <a href="#" class="mon-bouton-reserve disabled">Vendue</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-figure-chromatique">
                 <div class="image-lien">
-                    <img src="images/utile/Colorees_Figure_chromatique.jpg" alt="Figure_chromatique" loading="lazy">
+                    <img src="images/utile/Colorees_Figure_chromatique.jpg" alt="Figure chromatique" loading="lazy">
                 </div>
                 <h2>Figure chromatique</h2>
                 <div class="details">
@@ -123,12 +182,12 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Figure chromatique" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Figure%20chromatique" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-femme-au-miroir">
                 <div class="image-lien">
-                    <img src="images/utile/Colorees_Composition_figure.jpg" alt="Composition_figure" loading="lazy">
+                    <img src="images/utile/Colorees_Composition_figure.jpg" alt="Composition figure" loading="lazy">
                 </div>
                 <h2>Femme au miroir</h2>
                 <div class="details">
@@ -154,13 +213,14 @@
         <summary>
             <div class="titre-container">
                 <span class="label-collection">COLLECTION</span>
-                <span class="nom-collection">Les Nus<span class="badge-new">
+                <span class="nom-collection">Croquis d'après modèle vivant, poses rapides<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
                 <span class="fleche-indication"></span>
-            </div>
+            </span>
+</div>
             <div class="miniature-collection"> 
-                <img src="images/utile/nus/seanceB/nus_seanceB_3.jpg" alt="Aperçu collection Les Nus">
+                <img src="images/utile/nus/seanceB/nus_seanceB_3.jpg" alt="Charcoal drawing of a nude female figure in a dynamic pose, sketch from life drawing session B, expressive gestural lines, neutral studio background">
             </div>
         </summary>
         
@@ -185,7 +245,7 @@
                     </button>
 
                     <div class="galerie">
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-la-femme-assise">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceA/nue_femme_assise.jpg" alt="La femme assise" loading="lazy">
                             </div>
@@ -196,10 +256,10 @@
                             </div>
                             <p class="prix">Prix initial : <strong>450 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance A – La femme assise" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20A%20%E2%80%93%20La%20femme%20assise" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-helene">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceA/nue_Helene.jpg" alt="Hélène" loading="lazy">
                             </div>
@@ -210,10 +270,10 @@
                             </div>
                             <p class="prix">Prix initial : <strong>300 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance A – Hélène" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20A%20%E2%80%93%20H%C3%A9l%C3%A8ne" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-la-penseuse">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceA/nue_La_penseuse.jpg" alt="La penseuse" loading="lazy">
                             </div>
@@ -227,7 +287,7 @@
                             <a href="#" class="mon-bouton-reserve disabled">Vendue</a>
                         </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-oda">
                 <div class="image-lien">
                     <img src="images/utile/nus/seanceA/nue_Oda.jpg" alt="Oda" loading="lazy">
                 </div>
@@ -238,7 +298,7 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Oda" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oda" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
 
@@ -270,7 +330,7 @@
 
                     <div class="galerie">
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-seance-b-1">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceB/nus_seanceB_1.jpg" alt="Séance B 1" loading="lazy">
                             </div>
@@ -281,10 +341,10 @@
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance B – 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20B%20%E2%80%93%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-seance-b-2">
                 <div class="image-lien">
                     <img src="images/utile/nus/seanceB/nus_seanceB_2.jpg" alt="Séance B 2" loading="lazy">
                 </div>
@@ -295,10 +355,10 @@
                 </div>
                 <p class="prix">Prix initial : <strong>150 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance B – 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20B%20%E2%80%93%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-b-3">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceB/nus_seanceB_3.jpg" alt="Séance B 3" loading="lazy">
                     </div>
@@ -309,10 +369,10 @@
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance B – 3" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20B%20%E2%80%93%203" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-b-4">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceB/nus_seanceB_4.jpg" alt="Séance B 4" loading="lazy">
                     </div>
@@ -323,7 +383,7 @@
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance B – 4" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20B%20%E2%80%93%204" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
             </div>
@@ -342,7 +402,8 @@
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
             <div class="fleche-indication"></div>
-        </div>
+        </span>
+</div>
                     <div class="miniature-sous-collection"> 
                         <img src="images/utile/nus/seanceC/nus_seanceC_1.jpg" alt="Aperçu Séance C" loading="lazy">
                     </div>
@@ -356,36 +417,38 @@
 
                     <div class="galerie">
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-seance-c-1">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceC/nus_seanceC_1.jpg" alt="Séance C 1" loading="lazy">
                             </div>
                             <h2>Séance C – 1<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                             <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance C – 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20C%20%E2%80%93%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-c-2">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceC/nus_seanceC_2.jpg" alt="Séance C 2" loading="lazy">
                     </div>
                     <h2>Séance C – 2<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance C – 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20C%20%E2%80%93%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
             </div>
@@ -416,7 +479,7 @@
 
                     <div class="galerie">
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-seance-d-1">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceD/seanceD_1.jpg" alt="Séance D 1" loading="lazy">
                             </div>
@@ -427,10 +490,10 @@
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance D – 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20D%20%E2%80%93%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-d-2">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceD/seanceD_2.jpg" alt="Séance D 2" loading="lazy">
                     </div>
@@ -441,7 +504,7 @@
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance D – 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20D%20%E2%80%93%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
             </div>
@@ -460,7 +523,8 @@
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
             <div class="fleche-indication"></div>
-        </div>
+        </span>
+</div>
                     <div class="miniature-sous-collection"> 
                         <img src="images/utile/nus/seanceE/seanceE_1.jpg" alt="Aperçu Séance E" loading="lazy">
                     </div>
@@ -474,127 +538,135 @@
 
                     <div class="galerie">
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-seance-e-1">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceE/seanceE_1.jpg" alt="Séance E 1" loading="lazy">
                             </div>
                             <h2>Séance E – 1<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                             <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-2">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_2.jpg" alt="Séance E 2" loading="lazy">
                     </div>
                     <h2>Séance E – 2<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-3">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_3.jpg" alt="Séance E 3" loading="lazy">
                     </div>
                     <h2>Séance E – 3<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 3" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%203" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-4">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_4.jpg" alt="Séance E 4" loading="lazy">
                     </div>
                     <h2>Séance E – 4<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 4" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%204" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-5">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_5.jpg" alt="Séance E 5" loading="lazy">
                     </div>
                     <h2>Séance E – 5<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 5" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%205" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-6">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_6.jpg" alt="Séance E 6" loading="lazy">
                     </div>
                     <h2>Séance E – 6<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 6" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%206" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-7">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_7.jpg" alt="Séance E 7" loading="lazy">
                     </div>
                     <h2>Séance E – 7<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 7" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%207" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-e-8">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceE/seanceE_8.jpg" alt="Séance E 8" loading="lazy">
                     </div>
                     <h2>Séance E – 8<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance E – 8" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20E%20%E2%80%93%208" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
 
@@ -614,7 +686,8 @@
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
             <div class="fleche-indication"></div>
-        </div>
+        </span>
+</div>
                     <div class="miniature-sous-collection"> 
                         <img src="images/utile/nus/seanceF/seanceF_1.jpg" alt="Aperçu Séance F" loading="lazy">
                     </div>
@@ -628,82 +701,87 @@
 
                     <div class="galerie">
 
-                        <article class="oeuvre">
+                        <article class="oeuvre" id="oeuvre-seance-f-1">
                             <div class="image-lien">
                                 <img src="images/utile/nus/seanceF/seanceF_1.jpg" alt="Séance F 1" loading="lazy">
                             </div>
                             <h2>Séance F – 1<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                             <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance F – 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20F%20%E2%80%93%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
                         </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-f-2">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceF/seanceF_2.jpg" alt="Séance F 2" loading="lazy">
                     </div>
                     <h2>Séance F – 2<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance F – 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20F%20%E2%80%93%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
 
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-f-3">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceF/seanceF_3.jpg" alt="Séance F 3" loading="lazy">
                     </div>
                     <h2>Séance F – 3 <span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance F – 3" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20F%20%E2%80%93%203" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-f-4">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceF/seanceF_4.jpg" alt="Séance F 4" loading="lazy">
                     </div>
                     <h2>Séance F – 4<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance F – 4" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20F%20%E2%80%93%204" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
-                <article class="oeuvre">
+                <article class="oeuvre" id="oeuvre-seance-f-5">
                     <div class="image-lien">
                         <img src="images/utile/nus/seanceF/seanceF_5.jpg" alt="Séance F 5" loading="lazy">
                     </div>
                     <h2>Séance F – 5<span class="badge-new">
     <span class="dot-new"></span>
-    <span class="text-new">New</span></h2>
+    <span class="text-new">New</span></span>
+</h2>
                     <div class="details">
                                 <p><strong>Dimensions : </strong>50x70 cm</p>
                                 <p><strong>Technique : </strong>Fusain</p>
                             </div>
                             <p class="prix">Prix initial : <strong>150 €</strong></p>
                             <p class="statut disponible">Disponible</p>
-                            <a href="mailto:laety.draw@proton.me?subject=Réservation : Séance F – 5" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                            <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20S%C3%A9ance%20F%20%E2%80%93%205" class="mon-bouton-reserve">Réserver cette œuvre</a>
                 </article>
             </div>
 
@@ -729,7 +807,7 @@
                 <span class="fleche-indication"></span>
             </div>
             <div class="miniature-collection"> 
-                <img src="images/utile/abstraction/abstraction_1.jpg" alt="Aperçu collection Les abstractions colorées" >
+                <img src="images/utile/abstraction/abstraction_1.jpg" alt="Aperçu collection Les abstractions colorées">
             </div>
         </summary>
         
@@ -740,7 +818,7 @@
     </button>
 
         <div class="galerie">
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-abstraction-1">
                 <div class="image-lien">
                     <img src="images/utile/abstraction/abstraction_1.jpg" alt="abstraction 1" loading="lazy">
                 </div>
@@ -756,10 +834,10 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Abstraction 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Abstraction%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-abstraction-2">
                 <div class="image-lien">
                     <img src="images/utile/abstraction/abstraction_2.jpg" alt="Abstraction 2" loading="lazy">
                 </div>
@@ -774,7 +852,7 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Abstraction 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Abstraction%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
             </div>
@@ -805,7 +883,7 @@
     </button>
 
         <div class="galerie">
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-felicie">
                 <div class="image-lien">
                     <img src="images/utile/grandformat_Felicie.jpg" alt="Félicie" loading="lazy">
                 </div>
@@ -819,7 +897,7 @@
                 <a href="#" class="mon-bouton-reserve disabled">Vendue</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-alma">
                 <div class="image-lien">
                     <img src="images/utile/grandformat_Alma.jpg" alt="Alma" loading="lazy">
                 </div>
@@ -833,7 +911,7 @@
                 <a href="#" class="mon-bouton-reserve disabled">Vendue</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-judith">
                 <div class="image-lien">
                     <img src="images/utile/grandformat_Judith.jpg" alt="Judith" loading="lazy">
                 </div>
@@ -847,7 +925,7 @@
                 <a href="#" class="mon-bouton-reserve disabled">Vendue</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-marguerite">
                 <div class="image-lien">
                     <img src="images/utile/grandformat_Marguerite.jpg" alt="Marguerite" loading="lazy">
                 </div>
@@ -881,7 +959,7 @@
                 <span class="fleche-indication"></span>
             </div>
             <div class="miniature-collection"> 
-                <img src="images/utile/montagne/montagne_1.jpg" alt="Aperçu collection La montagne" >
+                <img src="images/utile/montagne/montagne_1.jpg" alt="Aperçu collection La montagne">
             </div>
         </summary>
         
@@ -892,7 +970,7 @@
     </button>
 
         <div class="galerie">
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-montagne-1">
                 <div class="image-lien">
                     <img src="images/utile/montagne/montagne_1.jpg" alt="Montagne 1" loading="lazy">
                 </div>
@@ -908,10 +986,10 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Montagne 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-montagne-2">
                 <div class="image-lien">
                     <img src="images/utile/montagne/montagne_2.jpg" alt="Montagne 2" loading="lazy">
                 </div>
@@ -926,10 +1004,10 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Montagne 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-montagne-3">
                 <div class="image-lien">
                     <img src="images/utile/montagne/montagne_3.jpg" alt="Montagne 3" loading="lazy">
                 </div>
@@ -944,10 +1022,10 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Montagne 3" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%203" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-montagne-4">
                 <div class="image-lien">
                     <img src="images/utile/montagne/montagne_4.jpg" alt="Montagne 4" loading="lazy">
                 </div>
@@ -962,7 +1040,151 @@
                 </div>
                 <p class="prix">Prix initial : <strong>300 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Montagne 4" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%204" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-5">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_5.jpg" alt="Montagne 5" loading="lazy">
+                </div>
+                <h2>Montagne 5 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%205" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-6">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_6.jpg" alt="Montagne 6" loading="lazy">
+                </div>
+                <h2>Montagne 6 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%206" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-7">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_7.jpg" alt="Montagne 7" loading="lazy">
+                </div>
+                <h2>Montagne 7 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%207" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-8">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_8.jpg" alt="Montagne 8" loading="lazy">
+                </div>
+                <h2>Montagne 8 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%208" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-9">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_9.jpg" alt="Montagne 9" loading="lazy">
+                </div>
+                <h2>Montagne 9 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%209" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-10">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_10.jpg" alt="Montagne 10" loading="lazy">
+                </div>
+                <h2>Montagne 10 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%2010" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-11">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_11.jpg" alt="Montagne 11" loading="lazy">
+                </div>
+                <h2>Montagne 11 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%2011" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-montagne-12">
+                <div class="image-lien">
+                    <img src="images/utile/montagne/montagne_12.jpg" alt="Montagne 12" loading="lazy">
+                </div>
+                <h2>Montagne 12 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>100x80 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>300 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Montagne%2012" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
             </div>
@@ -986,7 +1208,7 @@
                 <span class="fleche-indication"></span>
             </div>
             <div class="miniature-collection"> 
-                <img src="images/utile/petite_toile/petite_toile_1.jpg" alt="Aperçu collection Les petites toiles" >
+                <img src="images/utile/petite_toile/petite_toile_1.jpg" alt="Aperçu collection Les petites toiles">
             </div>
         </summary>
         
@@ -997,7 +1219,7 @@
     </button>
 
         <div class="galerie">
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-petite-toile-1">
                 <div class="image-lien">
                     <img src="images/utile/petite_toile/petite_toile_1.jpg" alt="Petite toile 1" loading="lazy">
                 </div>
@@ -1013,10 +1235,10 @@
                 </div>
                 <p class="prix">Prix initial : <strong>100 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Petite toile - 1" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Petite%20toile%20-%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
-            <article class="oeuvre">
+            <article class="oeuvre" id="oeuvre-petite-toile-2">
                 <div class="image-lien">
                     <img src="images/utile/petite_toile/petite_toile_2.jpg" alt="Petite toile 2" loading="lazy">
                 </div>
@@ -1031,7 +1253,292 @@
                 </div>
                 <p class="prix">Prix initial : <strong>100 €</strong></p>
                 <p class="statut disponible">Disponible</p>
-                <a href="mailto:laety.draw@proton.me?subject=Réservation : Petite toile - 2" class="mon-bouton-reserve">Réserver cette œuvre</a>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Petite%20toile%20-%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            </div>
+
+            <button class="btn-scroll-right">
+        <span class="fleche-droite"></span>
+    </button>
+
+        </div>
+    </details>
+
+        <details class="collection-section"> 
+        <summary>
+            <div class="titre-container">
+                <span class="label-collection">COLLECTION</span>
+                <span class="nom-collection">Les oiseaux<span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</span>
+                <span class="fleche-indication"></span>
+            </div>
+            <div class="miniature-collection"> 
+                <img src="images/utile/oiseaux/oiseau_1.jpg" alt="Aperçu collection Les oiseaux">
+            </div>
+        </summary>
+        
+        <div class="galerie-wrapper">
+
+            <button class="btn-scroll-left">
+        <span class="fleche-gauche"></span>
+    </button>
+
+        <div class="galerie">
+            <article class="oeuvre" id="oeuvre-oiseau-1">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_1.jpg" alt="Oiseau 1" loading="lazy">
+                </div>
+                <h2>Oiseau - 1 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%201" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-oiseau-2">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_2.jpg" alt="Oiseau 2" loading="lazy">
+                </div>
+                <h2>Oiseau - 2 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%202" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-3">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_3.jpg" alt="Oiseau 3" loading="lazy">
+                </div>
+                <h2>Oiseau - 3 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%203" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-4">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_4.jpg" alt="Oiseau 4" loading="lazy">
+                </div>
+                <h2>Oiseau - 4 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%204" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-5">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_5.jpg" alt="Oiseau 5" loading="lazy">
+                </div>
+                <h2>Oiseau - 5 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%205" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-oiseau-6">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_6.jpg" alt="Oiseau 6" loading="lazy">
+                </div>
+                <h2>Oiseau - 6 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%206" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-7">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_7.jpg" alt="Oiseau 7" loading="lazy">
+                </div>
+                <h2>Oiseau - 7 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%207" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-8">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_8.jpg" alt="Oiseau 8" loading="lazy">
+                </div>
+                <h2>Oiseau - 8 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%208" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-9">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_9.jpg" alt="Oiseau 9" loading="lazy">
+                </div>
+                <h2>Oiseau - 9 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%209" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-10">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_10.jpg" alt="Oiseau 10" loading="lazy">
+                </div>
+                <h2>Oiseau - 10 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%2010" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-11">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_11.jpg" alt="Oiseau 11" loading="lazy">
+                </div>
+                <h2>Oiseau - 11 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%2011" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-12">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_12.jpg" alt="Oiseau 12" loading="lazy">
+                </div>
+                <h2>Oiseau - 12 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%2012" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+            
+            <article class="oeuvre" id="oeuvre-oiseau-13">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_13.jpg" alt="Oiseau 13" loading="lazy">
+                </div>
+                <h2>Oiseau - 13 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%2013" class="mon-bouton-reserve">Réserver cette œuvre</a>
+            </article>
+
+            <article class="oeuvre" id="oeuvre-oiseau-14">
+                <div class="image-lien">
+                    <img src="images/utile/oiseaux/oiseau_14.jpg" alt="Oiseau 14" loading="lazy">
+                </div>
+                <h2>Oiseau - 14 <span class="badge-new">
+    <span class="dot-new"></span>
+    <span class="text-new">New</span>
+</span>
+</h2>
+                <div class="details">
+                    <p><strong>Dimensions : </strong>30x40 cm</p>
+                    <p><strong>Technique : </strong>Acrylique sur toile</p>
+                </div>
+                <p class="prix">Prix initial : <strong>100 €</strong></p>
+                <p class="statut disponible">Disponible</p>
+                <a href="mailto:laety.draw@proton.me?subject=R%C3%A9servation%20:%20Oiseau%20-%2014" class="mon-bouton-reserve">Réserver cette œuvre</a>
             </article>
 
             </div>
@@ -1046,16 +1553,17 @@
 </section>
 
 <footer>
-        <p>&copy; 2026 LaetyDraw. Tous droits réservés.</p>
-        <p>Contact à : laety.draw@proton.me</p>
-        <p>Version 1.3.1</p>
+        <p>© 2026 LaetyDraw. Tous droits réservés.</p>
+        <p>Contact : <a href="mailto:laety.draw@proton.me">laety.draw@proton.me</a></p>
+        <p>Version 1.4.0</p>
     </footer>
+</div>
 
-    <div id="lightbox" class="lightbox" onclick="fermerLightbox()">
-        <span class="close" onclick="fermerLightbox()">&times;</span>
+<div id="lightbox" class="lightbox" onclick="fermerLightbox()">
+        <span class="close" onclick="fermerLightbox()">×</span>
         
-        <button class="lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">&#10094;</button>
-        <button class="lightbox-next" onclick="event.stopPropagation(); changeImage(1)">&#10095;</button>
+        <button class="lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">❮</button>
+        <button class="lightbox-next" onclick="event.stopPropagation(); changeImage(1)">❯</button>
         <button class="zoom-btn zoom-in" onclick="event.stopPropagation(); zoomIn()">+</button>
 <button class="zoom-btn zoom-out" onclick="event.stopPropagation(); zoomOut()">−</button>
         
@@ -1063,6 +1571,30 @@
         <div id="caption"></div>
     </div>
 
-    <script src="script.js?version=1.3.1"></script>
+    <section id="random-viewer" class="random-viewer hidden" aria-live="polite">
+    <button class="random-nav random-prev" id="random-prev" aria-label="Œuvre précédente">❮</button>
+
+    <div class="random-card">
+        <div class="random-image-wrap">
+            <img id="random-image" src="" alt="">
+        </div>
+
+        <div class="random-info">
+            <div id="random-collection" class="random-collection"></div>
+            <h2 id="random-title" class="random-title"></h2>
+            <div id="random-meta" class="random-meta"></div>
+            <p id="random-description" class="random-description"></p>
+        <button id="random-open-in-collection" class="random-open-btn" type="button" aria-label="Voir l’œuvre dans sa collection">
+    <span class="random-open-btn-icon">↗</span>
+    <span class="random-open-btn-text">Voir dans la collection</span>
+</button>
+</div>
+    </div>
+
+    <button class="random-nav random-next" id="random-next" aria-label="Œuvre suivante">❯</button>
+</section>
+
+
+    <script src="script.js?version=1.4.0"></script>
 </body>
 </html>

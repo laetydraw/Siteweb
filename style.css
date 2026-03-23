@@ -945,3 +945,228 @@ footer { text-align: center; padding: 40px; color: #777; border-top: 1px solid #
         white-space: normal;
     }
 }
+
+/* =========================
+   SWITCH DE MODE
+========================= */
+
+.mode-switch {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    z-index: 2000;
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    padding: 8px;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.mode-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    background: transparent;
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.mode-btn:hover {
+    transform: scale(1.08);
+    background: rgba(0,0,0,0.06);
+}
+
+.mode-btn.active {
+    background: rgba(0,0,0,0.1);
+}
+
+/* =========================
+   MODE ALEATOIRE
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+.random-viewer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 120px 40px 60px;
+    box-sizing: border-box;
+}
+
+.random-card {
+    width: min(1200px, 100%);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.random-image-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.random-image-wrap img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.18);
+    cursor: zoom-in;
+}
+
+.random-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.random-collection {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.65;
+}
+
+.random-title {
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.random-meta {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+.random-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.92;
+}
+
+.random-nav {
+    border: none;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.random-nav:hover {
+    transform: scale(1.08);
+    background: white;
+}
+
+@media (max-width: 900px) {
+    .random-viewer {
+        padding: 110px 20px 40px;
+        gap: 10px;
+    }
+
+    .random-card {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .random-image-wrap img {
+        max-height: 55vh;
+    }
+
+    .random-nav {
+        position: fixed;
+        bottom: 20px;
+        z-index: 2100;
+    }
+
+    .random-prev {
+        left: 20px;
+    }
+
+    .random-next {
+        right: 20px;
+    }
+}
+
+.random-open-btn {
+    margin-top: 14px;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(0,0,0,0.68);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.random-open-btn:hover {
+    background: rgba(255,255,255,0.82);
+    color: rgba(0,0,0,0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.09);
+}
+
+.random-open-btn-icon {
+    font-size: 0.9rem;
+    opacity: 0.75;
+}
+
+.random-open-btn-text {
+    line-height: 1;
+}
+
+.oeuvre-highlight {
+    animation: oeuvreHighlight 2.2s ease;
+}
+
+@keyframes oeuvreHighlight {
+    0% {
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+        transform: scale(1);
+    }
+    20% {
+        box-shadow: 0 0 0 6px rgba(0,0,0,0.08);
+        transform: scale(1.01);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+        transform: scale(1);
+    }
+}
+
+.random-lightbox-open #random-viewer {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#lightbox {
+    z-index: 99999;
+}
