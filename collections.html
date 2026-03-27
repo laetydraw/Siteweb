@@ -1553,7 +1553,7 @@
 </section>
 
 <footer>
-        <p>© 2026 LaetyDraw.</p>
+        <p>© 2026 LaetyDraw. Tous droits réservés.</p>
         <p>Contact : <a href="mailto:laety.draw@proton.me">laety.draw@proton.me</a></p>
     </footer>
 </div>
@@ -1593,6 +1593,111 @@
     <button class="random-nav random-next" id="random-next" aria-label="Œuvre suivante">❯</button>
 </section>
 
+<!-- ==================== SOUTIEN ARTISTE ==================== -->
+<button id="support-trigger" class="support-trigger" type="button" aria-label="Envoyer un message de soutien à l’artiste">
+    <span class="support-trigger-heart">❤️</span>
+    <span class="support-trigger-text">Soutenir l’artiste</span>
+</button>
+
+<div id="support-modal" class="support-modal" aria-hidden="true">
+    <div class="support-modal-backdrop" data-close-support></div>
+
+    <div class="support-panel" role="dialog" aria-modal="true" aria-labelledby="support-title">
+        <button class="support-close" type="button" aria-label="Fermer" data-close-support>×</button>
+
+        <div class="support-header">
+            <p class="support-kicker">Un mot doux pour l’artiste</p>
+            <h2 id="support-title">Envoyer un message de soutien</h2>
+            <p class="support-subtitle">
+                Un petit mot, une émotion, un compliment sur les œuvres ou sur le site…
+            </p>
+        </div>
+
+        <form id="support-form" class="support-form" novalidate>
+            <input type="text" name="website" id="support-website" class="support-honeypot" tabindex="-1" autocomplete="off">
+
+            <div class="support-field">
+                <label class="support-label">Votre réaction</label>
+                <div class="support-reactions" role="radiogroup" aria-label="Choisissez une réaction">
+                    <label class="support-reaction">
+                        <input type="radio" name="reaction" value="❤️" required checked>
+                        <span>❤️</span>
+                    </label>
+                    <label class="support-reaction">
+                        <input type="radio" name="reaction" value="😍">
+                        <span>😍</span>
+                    </label>
+                    <label class="support-reaction">
+                        <input type="radio" name="reaction" value="🥰">
+                        <span>🥰</span>
+                    </label>
+                    <label class="support-reaction">
+                        <input type="radio" name="reaction" value="👏">
+                        <span>👏</span>
+                    </label>
+                    <label class="support-reaction">
+                        <input type="radio" name="reaction" value="✨">
+                        <span>✨</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="support-row">
+                <div class="support-field">
+                    <label class="support-label" for="support-firstname">Prénom</label>
+                    <input
+                        type="text"
+                        id="support-firstname"
+                        name="firstname"
+                        class="support-input"
+                        maxlength="40"
+                        placeholder="Votre prénom (facultatif)"
+                    >
+                </div>
+            </div>
+
+            <label class="support-checkbox">
+                <input type="checkbox" id="support-anonymous" name="anonymous">
+                <span>Je préfère rester anonyme</span>
+            </label>
+
+            <div class="support-field">
+                <label class="support-label" for="support-message">Votre message</label>
+                <textarea
+                    id="support-message"
+                    name="message"
+                    class="support-textarea"
+                    rows="5"
+                    maxlength="500"
+                    placeholder="💡 Exemple : une œuvre précise, une émotion ressentie, ou une idée d’amélioration du site."
+                    required
+                ></textarea>
+                <div class="support-counter">
+                    <span id="support-count">0</span>/500
+                </div>
+            </div>
+
+            <p id="support-error" class="support-error" aria-live="polite"></p>
+
+            <button id="support-submit" class="support-submit" type="submit">
+                <span class="support-submit-icon">💌</span>
+                <span>Envoyer mon soutien</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<div id="support-toast" class="support-toast" aria-live="polite" aria-hidden="true">
+    <div class="support-toast-card">
+        <div class="support-toast-burst"></div>
+        <div class="support-toast-notes">♪ ♫ ♡ ✨</div>
+        <div class="support-toast-icon">❤️</div>
+        <h3>Message bien envoyé</h3>
+        <p>
+            Merci pour votre soutien. Votre message a bien été transmis à l’artiste.
+        </p>
+    </div>
+</div>
 
     <script src="script.js?version=1.5.0"></script>
 </body>

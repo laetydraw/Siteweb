@@ -1009,3 +1009,182 @@ function closeReservationPopup() {
   popup.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('popup-open');
 }
+
+/* ==================== SOUTIEN ARTISTE ==================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initSupportArtistFeature();
+});
+
+function initSupportArtistFeature() {
+    const trigger = document.getElementById("support-trigger");
+    const modal = document.getElementById("support-modal");
+    const form = document.getElementById("support-form");
+    const closeButtons = document.querySelectorAll("[data-close-support]");
+    const anonymousCheckbox = document.getElementById("support-anonymous");
+    const firstnameInput = document.getElementById("support-firstname");
+    const messageInput = document.getElementById("support-message");
+    const errorBox = document.getElementById("support-error");
+    const submitButton = document.getElementById("support-submit");
+    const toast = document.getElementById("support-toast");
+    const counter = document.getElementById("support-count");
+
+    if (!trigger || !modal || !form) return;
+
+    const WORKER_URL = "https://laetydraw-support.augustin-britsch.workers.dev/";
+
+    function openModal() {
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+            const checkedReaction = form.querySelector('input[name="reaction"]:checked');
+            if (checkedReaction) {
+                const firstFocusable = checkedReaction.closest("label");
+                if (firstFocusable) firstFocusable.focus?.();
+            }
+        }, 50);
+    }
+
+    function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        clearError();
+    }
+
+    function showError(message) {
+        if (errorBox) errorBox.textContent = message;
+    }
+
+    function clearError() {
+        if (errorBox) errorBox.textContent = "";
+    }
+
+    function showToast() {
+        if (!toast) return;
+        toast.classList.add("show");
+        toast.setAttribute("aria-hidden", "false");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+            toast.setAttribute("aria-hidden", "true");
+        }, 3200);
+    }
+
+    function updateCounter() {
+        if (!messageInput || !counter) return;
+        counter.textContent = messageInput.value.length.toString();
+    }
+
+    function handleAnonymousState() {
+        if (!anonymousCheckbox || !firstnameInput) return;
+
+        if (anonymousCheckbox.checked) {
+            firstnameInput.value = "";
+            firstnameInput.disabled = true;
+            firstnameInput.placeholder = "Anonyme";
+        } else {
+            firstnameInput.disabled = false;
+            firstnameInput.placeholder = "Votre prénom (facultatif)";
+        }
+    }
+
+    trigger.addEventListener("click", openModal);
+
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", closeModal);
+    });
+
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.classList.contains("open")) {
+            closeModal();
+        }
+    });
+
+    if (anonymousCheckbox) {
+        anonymousCheckbox.addEventListener("change", handleAnonymousState);
+        handleAnonymousState();
+    }
+
+    if (messageInput) {
+        messageInput.addEventListener("input", updateCounter);
+        updateCounter();
+    }
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        clearError();
+
+        const honeypot = document.getElementById("support-website");
+        const reaction = form.querySelector('input[name="reaction"]:checked')?.value || "❤️";
+        const firstname = anonymousCheckbox.checked ? "" : firstnameInput.value.trim();
+        const isAnonymous = anonymousCheckbox.checked;
+        const message = messageInput.value.trim();
+
+        if (honeypot && honeypot.value.trim() !== "") {
+            showError("Envoi impossible.");
+            return;
+        }
+
+        if (!message) {
+            showError("Merci d’écrire un petit message.");
+            return;
+        }
+
+        if (message.length < 6) {
+            showError("Le message est un peu trop court.");
+            return;
+        }
+
+        if (!isAnonymous && firstname.length > 40) {
+            showError("Le prénom est trop long.");
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = `<span class="support-submit-icon">⏳</span><span>Envoi en cours...</span>`;
+
+        const payload = {
+            reaction,
+            firstname,
+            anonymous: isAnonymous,
+            message,
+            pageUrl: window.location.href,
+            pageTitle: document.title,
+            userAgent: navigator.userAgent
+        };
+
+        try {
+            const response = await fetch(WORKER_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.error || "Impossible d’envoyer le message.");
+            }
+
+            form.reset();
+            updateCounter();
+            handleAnonymousState();
+            closeModal();
+            showToast();
+        } catch (error) {
+            console.error(error);
+            showError("Une erreur est survenue. Merci de réessayer dans un instant.");
+        } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML = `<span class="support-submit-icon">💌</span><span>Envoyer mon soutien</span>`;
+        }
+    });
+}
