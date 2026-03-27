@@ -785,3 +785,227 @@ function openRandomLightbox(artwork) {
     lightbox.style.display = 'flex';
     resetZoomLightbox();
 }
+/* ==================== PAGE RESERVATION ==================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initReservationPage();
+});
+
+function initReservationPage() {
+  const form = document.getElementById('reservation-form');
+  if (!form) return;
+
+  prefillReservationForm();
+  setupReservationForm();
+  setupReservationPopup();
+}
+
+function prefillReservationForm() {
+  const params = new URLSearchParams(window.location.search);
+
+  const collection = params.get('collection') || '';
+  const sousCollection = params.get('sousCollection') || '';
+  const oeuvre = params.get('oeuvre') || '';
+  const prix = params.get('prix') || '- €';
+
+  const collectionField = document.getElementById('collection');
+  const sousCollectionField = document.getElementById('sous-collection');
+  const oeuvreField = document.getElementById('oeuvre');
+  const prixField = document.getElementById('prix');
+
+  if (collectionField) collectionField.value = collection;
+  if (sousCollectionField) sousCollectionField.value = sousCollection || 'Collection principale';
+  if (oeuvreField) oeuvreField.value = oeuvre;
+  if (prixField) prixField.value = prix;
+}
+
+function setupReservationForm() {
+  const form = document.getElementById('reservation-form');
+  const submitButton = document.getElementById('reservation-submit');
+  if (!form || !submitButton) return;
+
+  const requiredFields = [
+    document.getElementById('prenom'),
+    document.getElementById('nom'),
+    document.getElementById('email'),
+    document.getElementById('telephone'),
+    document.getElementById('collection'),
+    document.getElementById('sous-collection'),
+    document.getElementById('oeuvre'),
+    document.getElementById('prix')
+  ];
+
+  requiredFields.forEach((field) => {
+    if (!field) return;
+
+    field.addEventListener('input', () => clearFieldError(field));
+    field.addEventListener('change', () => clearFieldError(field));
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    clearAllFieldErrors(form);
+
+    const isValid = validateReservationForm(requiredFields);
+
+    if (!isValid) {
+      const firstInvalidField = form.querySelector('.input-error');
+      if (firstInvalidField) firstInvalidField.focus();
+      return;
+    }
+
+    const prenom = document.getElementById('prenom')?.value.trim() || '';
+    const nom = document.getElementById('nom')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+
+    const replyToField = form.querySelector('input[name="reply_to"]');
+    const fullNameField = form.querySelector('input[name="full_name"]');
+
+    if (replyToField) replyToField.value = email;
+    if (fullNameField) fullNameField.value = `${prenom} ${nom}`;
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Envoi en cours...";
+
+    try {
+      await emailjs.sendForm(
+        'service_3eao6ro',
+        'template_evwt6ek',
+        form
+      );
+
+      form.reset();
+      prefillReservationForm();
+      openReservationPopup();
+
+    } catch (error) {
+      console.error('Erreur EmailJS :', error);
+      alert("Une erreur est survenue lors de l’envoi. Merci de réessayer dans quelques instants.");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Envoyer la demande de réservation";
+    }
+  });
+}
+function validateReservationForm(fields) {
+  let isValid = true;
+
+  fields.forEach((field) => {
+    if (!field) return;
+
+    const value = field.value.trim();
+    const fieldId = field.id;
+
+    if (!value) {
+      showFieldError(field, "Ce champ est obligatoire.");
+      isValid = false;
+      return;
+    }
+
+    if (fieldId === 'email' && !isValidEmail(value)) {
+      showFieldError(field, "Merci de renseigner une adresse mail valide.");
+      isValid = false;
+      return;
+    }
+
+    if (fieldId === 'telephone' && !isValidPhone(value)) {
+      showFieldError(field, "Merci de renseigner un numéro de téléphone valide.");
+      isValid = false;
+      return;
+    }
+  });
+
+  return isValid;
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+  const cleaned = phone.replace(/[^\d+()\-\s]/g, '').trim();
+
+  if (cleaned.length < 6) return false;
+
+  const phoneRegex = /^[+]?[\d\s().\-]{6,}$/;
+  return phoneRegex.test(cleaned);
+}
+
+function showFieldError(field, message) {
+  field.classList.add('input-error');
+
+  const formGroup = field.closest('.form-group');
+  if (!formGroup) return;
+
+  const existingError = formGroup.querySelector('.field-error-message');
+  if (existingError) existingError.remove();
+
+  const errorElement = document.createElement('p');
+  errorElement.className = 'field-error-message';
+  errorElement.textContent = message;
+
+  formGroup.appendChild(errorElement);
+}
+
+function clearFieldError(field) {
+  field.classList.remove('input-error');
+
+  const formGroup = field.closest('.form-group');
+  if (!formGroup) return;
+
+  const errorElement = formGroup.querySelector('.field-error-message');
+  if (errorElement) errorElement.remove();
+}
+
+function clearAllFieldErrors(form) {
+  form.querySelectorAll('.input-error').forEach((field) => {
+    field.classList.remove('input-error');
+  });
+
+  form.querySelectorAll('.field-error-message').forEach((msg) => {
+    msg.remove();
+  });
+}
+
+function setupReservationPopup() {
+  const popup = document.getElementById('reservation-success-popup');
+  const closeBtn = document.getElementById('reservation-popup-close');
+  if (!popup || !closeBtn) return;
+
+  closeBtn.addEventListener('click', closeReservationPopup);
+
+  popup.addEventListener('click', (e) => {
+    if (
+      e.target.classList.contains('reservation-popup-backdrop') ||
+      e.target === popup
+    ) {
+      closeReservationPopup();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.classList.contains('active')) {
+      closeReservationPopup();
+    }
+  });
+}
+
+function openReservationPopup() {
+  const popup = document.getElementById('reservation-success-popup');
+  if (!popup) return;
+
+  popup.classList.add('active');
+  popup.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('popup-open');
+}
+
+function closeReservationPopup() {
+  const popup = document.getElementById('reservation-success-popup');
+  if (!popup) return;
+
+  popup.classList.remove('active');
+  popup.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('popup-open');
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation d’œuvre | LaetyDraw</title>
+    <meta name="description" content="Réservez une œuvre originale de Marie-Laetitia sur LaetyDraw.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Marie-Laetitia">
+    <meta name="theme-color" content="#f4f4f4">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css?version=1.5.0">
+    <link rel="canonical" href="https://laetydraw.github.io/Siteweb/reservation.html">
+
+    <!-- EmailJS Browser SDK -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "KFcyj3FkGruE0pW0a"
+        });
+      })();
+    </script>
+</head>
+<body class="transition-site">
+
+    <nav class="navigation">
+        <a href="index.html">Accueil</a>
+        <a href="collections.html">Collections</a>
+        <a href="a-propos.html">À Propos</a>
+        <a href="FAQ.html">F.A.Q.</a>
+    </nav>
+
+    <section class="reservation-hero">
+        <p class="reservation-label">Réservation</p>
+        <h1>Réserver une œuvre</h1>
+        <p class="reservation-intro">
+            Remplissez ce formulaire pour réserver une œuvre originale de Marie-Laetitia.
+            Les informations de l’œuvre choisie sont automatiquement préremplies.
+        </p>
+    </section>
+
+    <main class="reservation-page">
+        <section class="reservation-card">
+            <div class="reservation-card-header">
+                <div>
+                    <p class="reservation-mini-label">Œuvre sélectionnée</p>
+                    <h2>Votre demande</h2>
+                </div>
+                <a href="collections.html" class="reservation-back-link">← Retour aux collections</a>
+            </div>
+
+            <form id="reservation-form" class="reservation-form" novalidate>
+                <!-- Infos cachées utiles pour EmailJS -->
+                <input type="hidden" name="to_email" value="[email protected]">
+                <input type="hidden" name="site_name" value="LaetyDraw">
+                <input type="hidden" name="reply_to">
+                <input type="hidden" name="full_name">
+
+
+
+                <div class="reservation-grid reservation-grid-2">
+    <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required>
+    </div>
+
+    <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+    </div>
+</div>
+
+<div class="reservation-grid reservation-grid-2">
+    <div class="form-group">
+        <label for="email">Adresse mail</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone" required placeholder="+33 ...">
+    </div>
+</div>
+
+<div class="reservation-grid">
+    <div class="form-group">
+        <label for="collection">Collection</label>
+        <input type="text" id="collection" name="collection" readonly required>
+    </div>
+</div>
+
+<div class="reservation-grid">
+    <div class="form-group">
+        <label for="sous-collection">Sous-collection</label>
+        <input type="text" id="sous-collection" name="sous_collection" readonly required>
+    </div>
+</div>
+
+<div class="reservation-grid reservation-grid-2 reservation-artwork-row">
+    <div class="form-group">
+        <label for="oeuvre">Œuvre choisie</label>
+        <input type="text" id="oeuvre" name="oeuvre" readonly required>
+    </div>
+
+    <div class="form-group">
+        <label for="prix">Prix</label>
+        <input type="text" id="prix" name="prix" readonly required>
+    </div>
+</div>
+
+<div class="reservation-grid">
+    <div class="form-group">
+        <label for="message">Message complémentaire</label>
+        <textarea id="message" name="message" rows="6" placeholder="Vous pouvez ajouter ici une précision, une question, ou un souhait particulier."></textarea>
+    </div>
+</div>
+
+                <div class="reservation-note">
+                    Après envoi, un message de confirmation s’affichera et un email de confirmation sera envoyé à l’adresse renseignée.
+                </div>
+
+                <div class="reservation-actions">
+                    <button type="submit" id="reservation-submit" class="mon-bouton-reserve reservation-submit">
+                        Envoyer la demande de réservation
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 LaetyDraw</p>
+    </footer>
+
+    <!-- POPUP ARTISTIQUE -->
+    <div id="reservation-success-popup" class="reservation-popup" aria-hidden="true">
+        <div class="reservation-popup-backdrop"></div>
+
+        <div class="reservation-popup-card" role="dialog" aria-modal="true" aria-labelledby="reservation-popup-title">
+            <button class="reservation-popup-close" id="reservation-popup-close" aria-label="Fermer">&times;</button>
+
+            <div class="reservation-popup-art">
+                <span class="brush brush-1"></span>
+                <span class="brush brush-2"></span>
+                <span class="brush brush-3"></span>
+                <span class="dot dot-1"></span>
+                <span class="dot dot-2"></span>
+                <span class="dot dot-3"></span>
+                <span class="dot dot-4"></span>
+            </div>
+
+            <p class="reservation-popup-label">Demande envoyée</p>
+            <h2 id="reservation-popup-title">Merci pour votre demande</h2>
+            <p class="reservation-popup-text">
+                Votre demande de réservation a bien été transmise à l’artiste.
+                Vous devez également recevoir un email de confirmation à l’adresse que vous avez renseignée.
+            </p>
+
+            <div class="reservation-popup-actions">
+                <a href="collections.html" class="mon-bouton-reserve">Retour aux collections</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
