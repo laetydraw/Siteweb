@@ -1188,3 +1188,71 @@ function initSupportArtistFeature() {
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initFloatingTopActions();
+});
+
+function initFloatingTopActions() {
+    const supportTrigger = document.getElementById("support-trigger");
+    const modeSwitch = document.querySelector(".mode-switch");
+    const elements = [supportTrigger, modeSwitch].filter(Boolean);
+
+    if (!elements.length) return;
+
+    let lastScrollY = window.scrollY;
+    const hideAfter = 80;
+
+    function updateFloatingActions() {
+        const currentScrollY = window.scrollY;
+        const scrollingDown = currentScrollY > lastScrollY;
+
+        if (currentScrollY <= hideAfter) {
+            elements.forEach(el => el.classList.remove("is-hidden"));
+        } else if (scrollingDown) {
+            elements.forEach(el => el.classList.add("is-hidden"));
+        } else {
+            elements.forEach(el => el.classList.remove("is-hidden"));
+        }
+
+        lastScrollY = currentScrollY;
+    }
+
+    window.addEventListener("scroll", updateFloatingActions, { passive: true });
+    updateFloatingActions();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initAutoOpenNusSubcollections();
+});
+
+function initAutoOpenNusSubcollections() {
+    const collections = document.querySelectorAll(".collection-section");
+
+    collections.forEach((collection) => {
+        const title = collection.querySelector(".nom-collection");
+        if (!title) return;
+
+        const titleText = title.textContent.toLowerCase();
+
+        if (!titleText.includes("croquis d'après modèle vivant")) return;
+
+        const subcollections = collection.querySelectorAll(".sous-collection");
+
+        const openAllSubcollections = () => {
+            subcollections.forEach((sub) => {
+                sub.open = true;
+            });
+        };
+
+        if (collection.open) {
+            openAllSubcollections();
+        }
+
+        collection.addEventListener("toggle", () => {
+            if (collection.open) {
+                openAllSubcollections();
+            }
+        });
+    });
+}
