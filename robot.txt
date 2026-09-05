@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://laetydraw.github.io/Siteweb/sitemap.xml

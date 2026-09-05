@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#f4f4f4">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?version=1.5.7">
+    <link rel="stylesheet" href="style.css?version=1.5.8">
     <link rel="canonical" href="https://laetydraw.github.io/Siteweb/collections.html">
 
     <!-- Open Graph -->
@@ -51,7 +51,7 @@
 
 <body class="transition-site page-collections">
 
-    <nav class="navigation">
+    <nav class="navigation" aria-label="Navigation principale">
         <p style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
     Cette page présente les collections d’œuvres de Marie-Laetitia sur LaetyDraw :
     compositions colorées, croquis d’après modèle vivant, nus artistiques au fusain,
@@ -59,21 +59,41 @@
     Chaque œuvre originale est disponible à la découverte et, selon son statut, à la réservation.
 </p>
         <a href="index.html">Accueil</a>
-        <a href="collections.html">Collections</a>
+        <a href="collections.html" aria-current="page">Collections</a>
+        <a href="contact.html">Commande</a>
         <a href="a-propos.html">À Propos</a>
         <a href="FAQ.html">F.A.Q.</a>
+        <a href="informations.html">Infos pratiques</a>
     </nav>
-    <section class="intro-collections">
+    <main>
+<section class="intro-collections">
     <p class="intro-collections-label">Collections</p>
     <h1>Explorer les œuvres</h1>
 </section>
 
+<section class="collection-tools" aria-label="Rechercher et filtrer les œuvres">
+    <label class="sr-only" for="artwork-search">Rechercher une œuvre</label>
+    <input id="artwork-search" type="search" placeholder="Rechercher une œuvre, une technique…">
+    <label class="sr-only" for="collection-filter">Collection</label>
+    <select id="collection-filter">
+        <option value="all">Toutes les collections</option>
+    </select>
+    <label class="sr-only" for="availability-filter">Disponibilité</label>
+    <select id="availability-filter">
+        <option value="all">Toutes les disponibilités</option>
+        <option value="disponible">Disponibles</option>
+        <option value="reservee">Réservées</option>
+        <option value="vendue">Vendues</option>
+    </select>
+    <p id="artwork-results" class="artwork-results" aria-live="polite"></p>
+</section>
+
 <div class="mode-switch" aria-label="Changer le mode d'affichage">
-    <button id="btn-random-mode" class="mode-btn" title="Mode aléatoire" aria-label="Mode aléatoire">
+    <button type="button" id="btn-random-mode" class="mode-btn" title="Mode aléatoire" aria-label="Mode aléatoire">
         ⤮
     </button>
 
-    <button id="btn-collections-mode" class="mode-btn active" title="Mode collections" aria-label="Mode collections">
+    <button type="button" id="btn-collections-mode" class="mode-btn active" title="Mode collections" aria-label="Mode collections">
         ☷
     </button>
 </div>
@@ -232,8 +252,8 @@
             <span class="nom-sous-collection">Séance K<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -330,8 +350,8 @@
             <span class="nom-sous-collection">Séance J<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -462,8 +482,8 @@
             <span class="nom-sous-collection">Séance I<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -560,8 +580,8 @@
             <span class="nom-sous-collection">Séance H<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -640,8 +660,8 @@
             <span class="nom-sous-collection">Séance G<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -720,8 +740,8 @@
             <span class="nom-sous-collection">Séance F<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -831,8 +851,8 @@
             <span class="nom-sous-collection">Séance E<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -990,7 +1010,7 @@
                 <summary>
                     <div class="titre-container">
             <span class="nom-sous-collection">Séance D</span>
-            <div class="fleche-indication"></div>
+            <span class="fleche-indication"></span>
         </div>
                 
                 </summary>
@@ -1045,8 +1065,8 @@
             <span class="nom-sous-collection">Séance C<span class="badge-new">
     <span class="dot-new"></span>
     <span class="text-new">New</span></span>
-            <div class="fleche-indication"></div>
-        </span>
+            </span>
+            <span class="fleche-indication"></span>
 </div>
                 
                 </summary>
@@ -1105,8 +1125,8 @@
     <details class="sous-collection" open>
                 <summary>
                     <div class="titre-container">
-            <span class="nom-sous-collection">Séance B</span>
-            <div class="fleche-indication"></div>
+                <span class="nom-sous-collection">Séance B</span>
+            <span class="fleche-indication"></span>
         </div>
                 
                 </summary>
@@ -1187,8 +1207,8 @@
             <details class="sous-collection" open>
                 <summary>
                     <div class="titre-container">
-            <span class="nom-sous-collection">Séance A</span>
-            <div class="fleche-indication"></div>
+                <span class="nom-sous-collection">Séance A</span>
+            <span class="fleche-indication"></span>
         </div>
                      
                 </summary>
@@ -2601,19 +2621,20 @@
 </div>
 
 <div id="lightbox" class="lightbox" onclick="fermerLightbox()">
-        <span class="close" onclick="fermerLightbox()">×</span>
+        <button type="button" class="close" aria-label="Fermer l’image" onclick="event.stopPropagation(); fermerLightbox()">×</button>
         
-        <button class="lightbox-prev" onclick="event.stopPropagation(); changeImage(-1)">❮</button>
-        <button class="lightbox-next" onclick="event.stopPropagation(); changeImage(1)">❯</button>
-        <button class="zoom-btn zoom-in" onclick="event.stopPropagation(); zoomIn()">+</button>
-<button class="zoom-btn zoom-out" onclick="event.stopPropagation(); zoomOut()">−</button>
+    <button type="button" class="lightbox-prev" aria-label="Image précédente" onclick="event.stopPropagation(); changeImage(-1)">❮</button>
+        <button type="button" class="lightbox-next" aria-label="Image suivante" onclick="event.stopPropagation(); changeImage(1)">❯</button>
+        <button type="button" class="zoom-btn zoom-in" aria-label="Agrandir l’image" onclick="event.stopPropagation(); zoomIn()">+</button>
+<button type="button" class="zoom-btn zoom-out" aria-label="Réduire l’image" onclick="event.stopPropagation(); zoomOut()">−</button>
         
-        <img class="lightbox-content" id="img-zoom">
+        <img class="lightbox-content" id="img-zoom" alt="">
         <div id="caption"></div>
+        <div id="lightbox-details" class="lightbox-details" aria-live="polite"></div>
     </div>
 
     <section id="random-viewer" class="random-viewer hidden" aria-live="polite">
-    <button class="random-nav random-prev" id="random-prev" aria-label="Œuvre précédente">❮</button>
+    <button type="button" class="random-nav random-prev" id="random-prev" aria-label="Œuvre précédente">❮</button>
 
     <div class="random-card">
         <div class="random-image-wrap">
@@ -2632,8 +2653,9 @@
 </div>
     </div>
 
-    <button class="random-nav random-next" id="random-next" aria-label="Œuvre suivante">❯</button>
+    <button type="button" class="random-nav random-next" id="random-next" aria-label="Œuvre suivante">❯</button>
 </section>
+    </main>
 
 <!-- ==================== SOUTIEN ARTISTE ==================== -->
 <button id="support-trigger" class="support-trigger" type="button" aria-label="Envoyer un message de soutien à l’artiste">
@@ -2741,6 +2763,6 @@
     </div>
 </div>
 
-    <script src="script.js?version=1.5.7"></script>
+    <script src="script.js?version=1.5.9"></script>
 </body>
 </html>

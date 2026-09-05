@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande personnalisée et contact | LaetyDraw</title>
+    <meta name="description" content="Contactez Marie-Laetitia pour une commande personnalisée, une question sur une œuvre ou un projet artistique.">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css?version=1.5.8">
+    <link rel="canonical" href="https://laetydraw.github.io/Siteweb/contact.html">
+</head>
+<body>
+    <nav class="navigation" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="collections.html">Collections</a>
+        <a href="contact.html" aria-current="page">Commande</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="FAQ.html">F.A.Q.</a>
+        <a href="informations.html">Infos pratiques</a>
+    </nav>
+
+    <main class="contact-page">
+        <section class="page-intro">
+            <p class="intro-collections-label">Projet artistique</p>
+            <h1>Parlons de votre commande</h1>
+            <p>Une œuvre personnalisée, une question sur une création ou une demande particulière : racontez votre idée.</p>
+        </section>
+
+        <form id="contact-form" class="contact-form" novalidate>
+            <div class="reservation-grid reservation-grid-2">
+                <div class="form-group"><label for="contact-name">Nom et prénom</label><input id="contact-name" name="name" required></div>
+                <div class="form-group"><label for="contact-email">Adresse e-mail</label><input id="contact-email" name="email" type="email" required></div>
+            </div>
+            <div class="reservation-grid reservation-grid-2">
+                <div class="form-group"><label for="contact-project">Type de demande</label><select id="contact-project" name="project"><option>Commande personnalisée</option><option>Question sur une œuvre</option><option>Autre demande</option></select></div>
+                <div class="form-group"><label for="contact-budget">Budget indicatif (facultatif)</label><input id="contact-budget" name="budget" placeholder="Ex. 250 €"></div>
+            </div>
+            <div class="form-group"><label for="contact-message">Votre message</label><textarea id="contact-message" name="message" rows="7" required placeholder="Format souhaité, univers, couleurs, délai ou toute autre précision…"></textarea></div>
+            <p id="contact-form-status" class="form-status" aria-live="polite"></p>
+            <button type="submit" class="mon-bouton-reserve">Préparer mon e-mail</button>
+            <p class="form-hint">Votre logiciel de messagerie s’ouvrira avec votre demande préremplie.</p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 LaetyDraw. Tous droits réservés.</p>
+        <p>Contact : <a href="mailto:laety.draw@proton.me">laety.draw@proton.me</a></p>
+    </footer>
+    <script src="script.js?version=1.5.9"></script>
+</body>
+</html>

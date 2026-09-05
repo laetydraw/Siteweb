@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#f4f4f4">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?version=1.5.7">
+    <link rel="stylesheet" href="style.css?version=1.5.8">
     <link rel="canonical" href="https://laetydraw.github.io/Siteweb/FAQ.html">
 
     <!-- Open Graph -->
@@ -56,11 +56,13 @@
 </head>
 
 <body>
-    <nav class="navigation">
+    <nav class="navigation" aria-label="Navigation principale">
         <a href="index.html">Accueil</a>
         <a href="collections.html">Collections</a>
+        <a href="contact.html">Commande</a>
         <a href="a-propos.html">À Propos</a>
         <a href="FAQ.html" aria-current="page">F.A.Q.</a>
+        <a href="informations.html">Infos pratiques</a>
     </nav>
 
     <main>
@@ -103,6 +105,20 @@
                 </a>
             </details>
         </div>
+
+        <section class="newsletter-section" aria-labelledby="newsletter-title">
+            <div>
+                <p class="intro-collections-label">Nouvelles de l’atelier</p>
+                <h2 id="newsletter-title">Recevoir les prochaines œuvres</h2>
+                <p>Inscrivez-vous pour être informé(e) des nouvelles mises en ligne et des actualités de LaetyDraw.</p>
+            </div>
+            <form id="newsletter-form" class="newsletter-form" data-newsletter-endpoint="">
+                <label class="sr-only" for="newsletter-email">Votre adresse e-mail</label>
+                <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="votre@email.fr" required>
+                <button type="submit">M’inscrire</button>
+                <p id="newsletter-status" class="form-status" aria-live="polite"></p>
+            </form>
+        </section>
     </main>
 
     <footer>
@@ -216,7 +232,7 @@
     </div>
 </div>
 
-<script src="script.js?version=1.5.7"></script>
+<script src="script.js?version=1.5.9"></script>
 
 </body>
 </html>

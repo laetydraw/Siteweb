@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initPageTransitions();
     initDetailsSections();
     initGaleries();
+    initDisabledArtworkLinks();
+    initArtworkFilters();
+    initContactForm();
+    initNewsletterForm();
 });
 
 
@@ -198,6 +202,119 @@ function initGaleries() {
     });
 }
 
+function initDisabledArtworkLinks() {
+    document.querySelectorAll('.mon-bouton-reserve.disabled').forEach((link) => {
+        link.setAttribute('aria-disabled', 'true');
+        link.setAttribute('tabindex', '-1');
+        link.addEventListener('click', (event) => event.preventDefault());
+    });
+}
+
+function initArtworkFilters() {
+    const search = document.getElementById('artwork-search');
+    const collectionFilter = document.getElementById('collection-filter');
+    const availabilityFilter = document.getElementById('availability-filter');
+    const results = document.getElementById('artwork-results');
+    const artworks = Array.from(document.querySelectorAll('.oeuvre'));
+    if (!search || !collectionFilter || !availabilityFilter || !results || !artworks.length) return;
+
+    const collections = [...new Set(artworks.map((artwork) => artwork.closest('.collection-section')?.querySelector('.nom-collection')?.textContent.replace(/New/g, '').trim()).filter(Boolean))];
+    collections.sort((a, b) => a.localeCompare(b, 'fr')).forEach((collection) => {
+        const option = document.createElement('option');
+        option.value = collection;
+        option.textContent = collection;
+        collectionFilter.appendChild(option);
+    });
+
+    const applyFilters = () => {
+        const searchTerm = search.value.trim().toLocaleLowerCase('fr');
+        const selectedCollection = collectionFilter.value;
+        const selectedAvailability = availabilityFilter.value;
+        let visibleCount = 0;
+
+        artworks.forEach((artwork) => {
+            const collection = artwork.closest('.collection-section')?.querySelector('.nom-collection')?.textContent.replace(/New/g, '').trim() || '';
+            const status = artwork.querySelector('.statut')?.classList;
+            const matches = (!searchTerm || artwork.textContent.toLocaleLowerCase('fr').includes(searchTerm))
+                && (selectedCollection === 'all' || collection === selectedCollection)
+                && (selectedAvailability === 'all' || status?.contains(selectedAvailability));
+            artwork.classList.toggle('is-filtered-out', !matches);
+            if (matches) visibleCount += 1;
+        });
+
+        document.querySelectorAll('.collection-section').forEach((section) => {
+            section.classList.toggle('is-filtered-out', !section.querySelector('.oeuvre:not(.is-filtered-out)'));
+        });
+        results.textContent = `${visibleCount} œuvre${visibleCount > 1 ? 's' : ''} trouvée${visibleCount > 1 ? 's' : ''}.`;
+    };
+
+    [search, collectionFilter, availabilityFilter].forEach((element) => {
+        element.addEventListener('input', applyFilters);
+        element.addEventListener('change', () => {
+            applyFilters();
+            trackEvent('collection_filter_used', { filter: element.id, value: element.value });
+        });
+    });
+    applyFilters();
+}
+
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const name = (data.get('name') || '').trim();
+        const email = (data.get('email') || '').trim();
+        const project = data.get('project') || '';
+        const budget = (data.get('budget') || '').trim();
+        const message = (data.get('message') || '').trim();
+        const status = document.getElementById('contact-form-status');
+        if (!name || !isValidEmail(email) || !message) {
+            if (status) status.textContent = 'Merci de renseigner votre nom, une adresse e-mail valide et votre message.';
+            return;
+        }
+        const subject = encodeURIComponent(`LaetyDraw — ${project}`);
+        const body = encodeURIComponent(`Bonjour Marie-Laetitia,\n\nNom : ${name}\nE-mail : ${email}\nType de demande : ${project}\nBudget indicatif : ${budget || 'Non renseigné'}\n\nMessage :\n${message}`);
+        trackEvent('custom_order_email_prepared', { project_type: project });
+        window.location.href = `mailto:laety.draw@proton.me?subject=${subject}&body=${body}`;
+        if (status) status.textContent = 'Votre messagerie s’ouvre avec votre demande préremplie.';
+    });
+}
+
+function initNewsletterForm() {
+    const form = document.getElementById('newsletter-form');
+    if (!form) return;
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const email = form.elements.email?.value.trim();
+        const status = document.getElementById('newsletter-status');
+        const endpoint = form.dataset.newsletterEndpoint;
+        if (!isValidEmail(email)) {
+            if (status) status.textContent = 'Merci de renseigner une adresse e-mail valide.';
+            return;
+        }
+        if (!endpoint) {
+            if (status) status.textContent = 'Le formulaire est prêt : connecte-le à ton outil de newsletter pour activer les inscriptions.';
+            return;
+        }
+        try {
+            const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+            if (!response.ok) throw new Error('Newsletter unavailable');
+            form.reset();
+            if (status) status.textContent = 'Merci, votre inscription est confirmée.';
+            trackEvent('newsletter_subscribed');
+        } catch {
+            if (status) status.textContent = 'L’inscription est momentanément indisponible. Réessayez plus tard.';
+        }
+    });
+}
+
+function trackEvent(eventName, parameters = {}) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...parameters });
+}
+
 function scrollGalerie(bouton, direction) {
     const wrapper = bouton.closest('.galerie-wrapper');
     if (!wrapper) return;
@@ -289,6 +406,10 @@ function ouvrirLightbox(element) {
     lightbox.style.display = 'flex';
     majContenuLightbox();
     resetZoomLightbox();
+    trackEvent('artwork_lightbox_opened', {
+        artwork_name: element.closest('.oeuvre')?.querySelector('h2')?.textContent.trim() || '',
+        source: 'collection'
+    });
 }
 
 function majContenuLightbox() {
@@ -304,8 +425,43 @@ function majContenuLightbox() {
 
     const titre = imageActuelle.closest('.oeuvre')?.querySelector('h2');
     captionText.innerHTML = titre ? titre.innerHTML : '';
+    renderLightboxDetailsFromElement(imageActuelle);
 
     resetZoomLightbox();
+}
+
+function renderLightboxDetailsFromElement(image) {
+    const detailsContainer = document.getElementById('lightbox-details');
+    const artwork = image?.closest('.oeuvre');
+    if (!detailsContainer) return;
+
+    if (!artwork) {
+        detailsContainer.textContent = '';
+        return;
+    }
+
+    const details = Array.from(artwork.querySelectorAll('.details p')).map((item) => item.textContent.trim());
+    const prix = artwork.querySelector('.prix')?.textContent.trim();
+    const statut = artwork.querySelector('.statut')?.textContent.trim();
+    detailsContainer.replaceChildren();
+
+    [...details, prix, statut].filter(Boolean).forEach((text) => {
+        const line = document.createElement('p');
+        line.textContent = text;
+        detailsContainer.appendChild(line);
+    });
+}
+
+function renderLightboxDetailsFromArtwork(artwork) {
+    const detailsContainer = document.getElementById('lightbox-details');
+    if (!detailsContainer) return;
+
+    detailsContainer.replaceChildren();
+    [buildMetaText(artwork), artwork.prix, artwork.statut].filter(Boolean).forEach((text) => {
+        const line = document.createElement('p');
+        line.textContent = text;
+        detailsContainer.appendChild(line);
+    });
 }
 
 function changeImage(direction) {
@@ -781,6 +937,9 @@ function openRandomLightbox(artwork) {
     if (caption) {
         caption.innerHTML = artwork.title || '';
     }
+
+    renderLightboxDetailsFromArtwork(artwork);
+    trackEvent('artwork_lightbox_opened', { artwork_name: artwork.title, source: 'random' });
 
     lightbox.style.display = 'flex';
     resetZoomLightbox();

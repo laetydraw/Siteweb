@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#f4f4f4">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css?version=1.5.7">
+    <link rel="stylesheet" href="style.css?version=1.5.8">
     <link rel="canonical" href="https://laetydraw.github.io/Siteweb/reservation.html">
 
     <!-- EmailJS Browser SDK -->
@@ -28,11 +28,13 @@
 </head>
 <body class="transition-site">
 
-    <nav class="navigation">
+    <nav class="navigation" aria-label="Navigation principale">
         <a href="index.html">Accueil</a>
         <a href="collections.html">Collections</a>
+        <a href="contact.html">Commande</a>
         <a href="a-propos.html">À Propos</a>
         <a href="FAQ.html">F.A.Q.</a>
+        <a href="informations.html">Infos pratiques</a>
     </nav>
 
     <section class="reservation-hero">
@@ -56,7 +58,7 @@
 
             <form id="reservation-form" class="reservation-form" novalidate>
                 <!-- Infos cachées utiles pour EmailJS -->
-                <input type="hidden" name="to_email" value="[email protected]">
+                <input type="hidden" name="to_email" value="laety.draw@proton.me">
                 <input type="hidden" name="site_name" value="LaetyDraw">
                 <input type="hidden" name="reply_to">
                 <input type="hidden" name="full_name">
@@ -142,7 +144,7 @@
         <div class="reservation-popup-backdrop"></div>
 
         <div class="reservation-popup-card" role="dialog" aria-modal="true" aria-labelledby="reservation-popup-title">
-            <button class="reservation-popup-close" id="reservation-popup-close" aria-label="Fermer">&times;</button>
+            <button type="button" class="reservation-popup-close" id="reservation-popup-close" aria-label="Fermer">&times;</button>
 
             <div class="reservation-popup-art">
                 <span class="brush brush-1"></span>
@@ -167,6 +169,6 @@
         </div>
     </div>
 
-    <script src="script.js?version=1.5.7"></script>
+    <script src="script.js?version=1.5.9"></script>
 </body>
 </html>
